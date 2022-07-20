@@ -1,0 +1,9 @@
+version: "3"
+services:
+  opensearch:
+    image: opensearchproject/opensearch:2.1.0
+    environment:
+      - discovery.type=single-node
+    ports:
+      - 9200:9200
+      - 9600:9600
