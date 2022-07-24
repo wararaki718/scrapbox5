@@ -7,6 +7,7 @@ from api.config import Config
 from api.main import app, get_model
 from api.model import Classifier
 
+
 @pytest.fixture
 def client() -> TestClient:
     api = TestClient(app)
