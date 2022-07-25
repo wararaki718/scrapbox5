@@ -20,6 +20,10 @@ python app/main.py bye tmptmp
 python app/main.py bye tmptmp --formal
 ```
 
+```shell
+python app/main.py progress
+```
+
 ## help
 
 ```shell
