@@ -17,8 +17,8 @@ get_model = partial(Classifier.get_model, config)
 def predict(value: int, model: Optional[Classifier] = Depends(get_model)):
     if model is None:
         return Result(value=-1)
-    print(value)
+    #print(value)
     result = model.predict(value)
-    print(model._threshold)
-    print(app.dependency_overrides.keys())
+    #print(model._threshold)
+    #print(app.dependency_overrides.keys())
     return Result(value=result)
