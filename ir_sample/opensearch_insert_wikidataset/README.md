@@ -3,7 +3,7 @@
 ## setup
 
 ```shell
-pip install opensearch-py tensorflow tensorflow-datasets
+pip install opensearch-py tensorflow tensorflow-datasets transformers fugashi torch unidic-lite
 ```
 
 
@@ -11,6 +11,12 @@ pip install opensearch-py tensorflow tensorflow-datasets
 
 ```shell
 docker-compose up
+```
+
+check
+
+```shell
+curl -XGET --insecure -u 'admin:admin' 'https://localhost:9200'
 ```
 
 ## run

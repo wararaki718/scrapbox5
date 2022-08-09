@@ -6,14 +6,20 @@ from client import OpenSearchClient
 from model import Document
 from loader import load_wiki
 from preprocessor import Preprocessor
+from vectorizer import BertVectorizer
 
 
 def main():
-    df = load_wiki()
+    df = load_wiki().head(300)
     print(df.shape)
 
     preprocessor = Preprocessor()
     df = preprocessor.transform(df)
+
+    model_name = "cl-tohoku/bert-base-japanese-v2"
+    vectorizer = BertVectorizer(model_name)
+    df["vector"] = vectorizer.transform(df.text.tolist())
+    
     docs = [Document(**document) for document in df.to_dict(orient="records")]
     del df
     gc.collect()
