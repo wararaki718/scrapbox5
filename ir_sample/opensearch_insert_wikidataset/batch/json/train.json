@@ -1,0 +1,23 @@
+{
+    "training_index": "python-test-index",
+    "training_field": "vector",
+    "dimension": 768,
+    "description": "sample ann model",
+    "search_size": 500,
+    "method": {
+        "name": "hnsw",
+        "engine": "nmslib",
+        "parameters": {
+            "dimension": 768,
+            "method": {
+                "name": "hnsw",
+                "space_type": "l2",
+                "engine": "nmslib",
+                "parameters": {
+                    "ef_construction": 128,
+                    "m": 16
+                }
+            }
+        }
+    }
+}

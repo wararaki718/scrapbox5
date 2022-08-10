@@ -1,4 +1,5 @@
 import gc
+from pathlib import Path
 from time import sleep
 
 from config import ClientConfig, SearchConfig
@@ -24,8 +25,8 @@ def main():
     del df
     gc.collect()
 
-    client = OpenSearchClient(ClientConfig())
-    config = SearchConfig()
+    client = OpenSearchClient(ClientConfig.load())
+    config = SearchConfig.load(index_body_path=Path("json/mappings.json"))
 
     print("create_index:")
     response = client.create_index(config.index_name, config.index_body)

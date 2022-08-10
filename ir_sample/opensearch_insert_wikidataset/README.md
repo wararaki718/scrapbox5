@@ -22,5 +22,6 @@ curl -XGET --insecure -u 'admin:admin' 'https://localhost:9200'
 ## run
 
 ```shell
+cd batch
 python main.py
 ```

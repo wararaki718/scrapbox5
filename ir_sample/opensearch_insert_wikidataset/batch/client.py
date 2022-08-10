@@ -41,4 +41,3 @@ class OpenSearchClient:
     def search(self, index_name: str, body: Optional[dict]=None) -> dict:
         response = self._client.search(index=index_name, body=body)
         return response
-    

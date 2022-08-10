@@ -20,7 +20,7 @@ class BertVectorizer:
         )
         self._model = try_gpu(AutoModel.from_pretrained(model_name))
     
-    def transform(self, texts: List[str], batch_size: int = 16) -> List[List[int]]:
+    def transform(self, texts: List[str], batch_size: int = 16) -> List[List[float]]:
         vectors = []
         for i in range(0, len(texts), batch_size):
             tokens = self._encoder(texts[i:i+batch_size])

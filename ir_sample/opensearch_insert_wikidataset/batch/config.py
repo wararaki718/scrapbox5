@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
-
-import certifi
+import json
+from pathlib import Path
+from typing import Optional
 
 
 @dataclass
@@ -15,6 +16,10 @@ class ClientConfig:
     ssl_assert_hostname: bool = False
     ssl_show_warn: bool = False
 
+    @classmethod
+    def load(cls) -> "ClientConfig":
+        return cls()
+
 
 @dataclass
 class SearchConfig:
@@ -22,3 +27,20 @@ class SearchConfig:
     index_body: dict = field(
         default_factory=lambda: {"settings": {"index": {"number_of_shards": 4}}}
     )
+
+    @classmethod
+    def load(cls, index_name: Optional[str]=None, index_body_path: Optional[Path]=None) -> "SearchConfig":
+        if index_name is None and index_body_path is None:
+            return cls()
+        
+        if index_body_path is None:
+            return cls(index_name=index_name)
+        
+        with open(index_body_path) as f:
+            body = json.load(f)
+        
+        if index_name is None:
+            return cls(index_body=body)
+        
+        return cls(index_name=index_name, index_body=body)
+        

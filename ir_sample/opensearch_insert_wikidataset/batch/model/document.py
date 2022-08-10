@@ -7,4 +7,4 @@ class Document:
     text: str
     version_id: str
     wikidata_id: str
-    vector: List[int]
+    vector: List[float]
