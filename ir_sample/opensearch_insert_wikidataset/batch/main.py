@@ -1,4 +1,5 @@
 import gc
+import json
 from pathlib import Path
 from time import sleep
 
@@ -28,32 +29,53 @@ def main():
     client = OpenSearchClient(ClientConfig.load())
     config = SearchConfig.load(index_body_path=Path("json/mappings.json"))
 
+    response = client.delete_index(config.index_name)
+
     print("create_index:")
     response = client.create_index(config.index_name, config.index_body)
-    print(response)
+    print(f"acknowledged: {response['acknowledged']}")
     print()
     sleep(2)
 
     print("insert document:")
     response = client.insert(config.index_name, docs[0])
-    print(response)
+    print(f"successful: {response['_shards']['successful']}")
     print()
     sleep(2)
 
     print("bulk insert:")
     response = client.bulk_insert(config.index_name, docs[1:10])
-    print(response)
+    print(f"errors: {response['errors']}, items: {len(response['items'])}")
     print()
     sleep(2)
 
     print("search:")
     response = client.search(config.index_name)
+    print(f"number of hits: {len(response['hits'])}")
+    print()
+    sleep(2)
+
+    print("train:")
+    with open("json/train.json") as f:
+        train_body = json.load(f)
+    response = client.train(train_body)
+    print(response)
+    print()
+    sleep(2)
+
+    print("model status:")
+    response = client.model_status()
     print(response)
     print()
     sleep(2)
     
     print("delete index:")
     response = client.delete_index(config.index_name)
+    print(response)
+    print()
+
+    print("delete model:")
+    response = client.delete_model()
     print(response)
     print()
 
