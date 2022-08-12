@@ -42,8 +42,8 @@ class OpenSearchClient:
         response = self._client.search(index=index_name, body=body)
         return response
 
-    def train(self, body: dict) -> dict:
-        train_path = "/_plugins/_knn/models/sample-model/_train"
+    def train(self, model_name: str, body: dict) -> dict:
+        train_path = f"/_plugins/_knn/models/{model_name}/_train"
         response = self._client.transport.perform_request(
             "POST",
             train_path,
@@ -51,16 +51,16 @@ class OpenSearchClient:
         )
         return response
 
-    def model_status(self) -> dict:
+    def model_status(self, model_name: str) -> dict:
         response = self._client.transport.perform_request(
             "GET",
-            "/_plugins/_knn/models/sample-model"
+            f"/_plugins/_knn/models/{model_name}"
         )
         return response
 
-    def delete_model(self) -> dict:
+    def delete_model(self, model_name: str) -> dict:
         response = self._client.transport.perform_request(
             "DELETE",
-            "/_plugins/_knn/models/sample-model"
+            f"/_plugins/_knn/models/{model_name}"
         )
         return response

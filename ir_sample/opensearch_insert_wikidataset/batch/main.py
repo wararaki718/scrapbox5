@@ -1,9 +1,8 @@
 import gc
-import json
 from pathlib import Path
 from time import sleep
 
-from config import ClientConfig, SearchConfig
+from config import ClientConfig, SearchConfig, TrainConfig
 from client import OpenSearchClient
 from model import Document
 from loader import load_wiki
@@ -29,7 +28,7 @@ def main():
     client = OpenSearchClient(ClientConfig.load())
     config = SearchConfig.load(index_body_path=Path("json/mappings.json"))
 
-    response = client.delete_index(config.index_name)
+    #response = client.delete_index(config.index_name)
 
     print("create_index:")
     response = client.create_index(config.index_name, config.index_body)
@@ -55,16 +54,15 @@ def main():
     print()
     sleep(2)
 
+    train_config = TrainConfig.load("sample-model", Path("json/train.json"))
     print("train:")
-    with open("json/train.json") as f:
-        train_body = json.load(f)
-    response = client.train(train_body)
+    response = client.train(train_config.model_name, train_config.model_params)
     print(response)
     print()
     sleep(2)
 
     print("model status:")
-    response = client.model_status()
+    response = client.model_status(train_config.model_name)
     print(response)
     print()
     sleep(2)
@@ -75,7 +73,7 @@ def main():
     print()
 
     print("delete model:")
-    response = client.delete_model()
+    response = client.delete_model(train_config.model_name)
     print(response)
     print()
 

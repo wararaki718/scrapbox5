@@ -3,7 +3,7 @@
     "training_field": "vector",
     "dimension": 768,
     "description": "sample ann model",
-    "search_size": 500,
+    "search_size": 32,
     "method": {
         "name": "hnsw",
         "engine": "faiss",

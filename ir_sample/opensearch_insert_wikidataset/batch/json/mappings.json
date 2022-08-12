@@ -26,7 +26,7 @@
                     "engine": "nmslib",
                     "parameters": {
                         "ef_construction": 128,
-                        "m": 16
+                        "m": 4
                     }
                 }
             }

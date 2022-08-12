@@ -43,4 +43,16 @@ class SearchConfig:
             return cls(index_body=body)
         
         return cls(index_name=index_name, index_body=body)
+
+
+@dataclass
+class TrainConfig:
+    model_name: str
+    model_params: dict
+
+    @classmethod
+    def load(cls, model_name: str, model_params_path: Path) -> "TrainConfig":
+        with open(model_params_path) as f:
+            params = json.load(f)
         
+        return cls(model_name=model_name, model_params=params)
