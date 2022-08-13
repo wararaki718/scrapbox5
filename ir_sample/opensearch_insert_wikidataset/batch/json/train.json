@@ -1,9 +1,9 @@
 {
     "training_index": "python-test-index",
     "training_field": "vector",
-    "dimension": 768,
+    "dimension": 4,
     "description": "sample ann model",
-    "search_size": 32,
+    "search_size": 128,
     "method": {
         "name": "hnsw",
         "engine": "faiss",
@@ -12,7 +12,7 @@
                 "name": "pq",
                 "parameters": {
                     "code_size": 8,
-                    "m": 8
+                    "m": 4
                 }
             }
         }

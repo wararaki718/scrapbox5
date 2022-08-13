@@ -19,13 +19,13 @@
             },
             "vector": {
                 "type": "knn_vector",
-                "dimension": 768,
+                "dimension": 4,
                 "method": {
                     "name": "hnsw",
                     "space_type": "l2",
                     "engine": "nmslib",
                     "parameters": {
-                        "ef_construction": 128,
+                        "ef_construction": 4,
                         "m": 4
                     }
                 }

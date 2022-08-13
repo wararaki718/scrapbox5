@@ -1,6 +1,8 @@
 from functools import partial
 from typing import List
 
+import numpy as np
+from sklearn.decomposition import PCA
 from transformers import AutoModel, AutoTokenizer
 
 from utils import try_gpu
@@ -19,8 +21,9 @@ class BertVectorizer:
             }
         )
         self._model = try_gpu(AutoModel.from_pretrained(model_name))
+        self._pca = PCA(n_components=4)
     
-    def transform(self, texts: List[str], batch_size: int = 16) -> List[List[float]]:
+    def fit_transform(self, texts: List[str], batch_size: int = 16) -> List[List[float]]:
         vectors = []
         for i in range(0, len(texts), batch_size):
             tokens = self._encoder(texts[i:i+batch_size])
@@ -30,4 +33,4 @@ class BertVectorizer:
             )
             vector = out.last_hidden_state.mean(1).detach().cpu().numpy().tolist()
             vectors.extend(vector)
-        return vectors
+        return self._pca.fit_transform(np.array(vectors)).tolist()

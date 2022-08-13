@@ -19,7 +19,7 @@ def main():
 
     model_name = "cl-tohoku/bert-base-japanese-v2"
     vectorizer = BertVectorizer(model_name)
-    df["vector"] = vectorizer.transform(df.text.tolist())
+    df["vector"] = vectorizer.fit_transform(df.text.tolist())
     
     docs = [Document(**document) for document in df.to_dict(orient="records")]
     del df
@@ -43,10 +43,10 @@ def main():
     sleep(2)
 
     print("bulk insert:")
-    response = client.bulk_insert(config.index_name, docs[1:10])
+    response = client.bulk_insert(config.index_name, docs[1:])
     print(f"errors: {response['errors']}, items: {len(response['items'])}")
     print()
-    sleep(2)
+    sleep(15)
 
     print("search:")
     response = client.search(config.index_name)

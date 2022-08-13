@@ -3,7 +3,7 @@
 ## setup
 
 ```shell
-pip install opensearch-py tensorflow tensorflow-datasets transformers fugashi torch unidic-lite
+pip install opensearch-py tensorflow tensorflow-datasets transformers fugashi torch unidic-lite scikit-learn
 ```
 
 
