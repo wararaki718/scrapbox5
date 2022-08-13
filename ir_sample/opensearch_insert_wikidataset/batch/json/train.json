@@ -1,7 +1,7 @@
 {
     "training_index": "python-test-index",
     "training_field": "vector",
-    "dimension": 4,
+    "dimension": 768,
     "description": "sample ann model",
     "search_size": 128,
     "method": {

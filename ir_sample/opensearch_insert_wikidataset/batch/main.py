@@ -11,7 +11,7 @@ from vectorizer import BertVectorizer
 
 
 def main():
-    df = load_wiki().head(300)
+    df = load_wiki().sample(n=2000)
     print(df.shape)
 
     preprocessor = Preprocessor()
@@ -47,6 +47,8 @@ def main():
     print(f"errors: {response['errors']}, items: {len(response['items'])}")
     print()
     sleep(15)
+    del docs
+    gc.collect()
 
     print("search:")
     response = client.search(config.index_name)
