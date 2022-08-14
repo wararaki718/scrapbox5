@@ -97,11 +97,11 @@ def main():
     show(response["hits"]["hits"])
     print()
 
-    print("search knn:")
-    query = QueryBuilder.build(Path("json/knn_query.json"), keyword, vectorizer)
-    response = client.search(config.index_name, query)
-    show(response["hits"]["hits"])
-    print()
+    #print("search knn:")
+    #query = QueryBuilder.build(Path("json/knn_query.json"), keyword, vectorizer)
+    #response = client.search(config.index_name, query)
+    #show(response["hits"]["hits"])
+    #print()
 
     print("delete index:")
     response = client.delete_index(config.index_name)
