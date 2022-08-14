@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from typing import List
 
 
@@ -8,3 +8,6 @@ class Document:
     version_id: str
     wikidata_id: str
     vector: List[float]
+
+    def __str__(self) -> str:
+        return str(asdict(self)).replace("'", '"')

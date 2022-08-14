@@ -1,0 +1,11 @@
+{
+    "size": 5,
+    "query": {
+        "knn": {
+            "vector": {
+                "vector": [],
+                "k": 10
+            }
+        }
+    }
+}

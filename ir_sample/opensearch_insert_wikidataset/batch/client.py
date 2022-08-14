@@ -21,21 +21,23 @@ class OpenSearchClient:
     
     def insert(self, index_name: str, document: Document) -> dict:
         body = asdict(document)
-        response = self._client.index(index = index_name, body = body, refresh = True)
+        response = self._client.index(index=index_name, body=body, refresh=True)
         return response
     
-    def bulk_insert(self, index_name: str, documents: List[Document]) -> dict:
-        action = str({"index": { "_index": index_name}})
-        body = "\n".join(
-            map(
-                lambda document: f"{action}\n{document}".replace("'", '"'),
+    def bulk_insert(self, index_name: str, documents: List[Document], chunksize: int=128) -> dict:
+        action = str({"index": { "_index": index_name}}).replace("'", '"')
+        
+        for i in range(0, len(documents), chunksize):
+            body = "\n".join(
                 map(
-                    lambda document: str(asdict(document)),
-                    documents
+                    lambda document: f"{action}\n{document}",
+                    map(
+                        lambda document: str(document),
+                        documents[i:i+chunksize]
+                    )
                 )
             )
-        )
-        response = self._client.bulk(body=body, index=index_name)
+            response = self._client.bulk(body=body, index=index_name)
         return response
 
     def search(self, index_name: str, body: Optional[dict]=None) -> dict:
@@ -51,7 +53,7 @@ class OpenSearchClient:
         )
         return response
 
-    def model_status(self, model_name: str) -> dict:
+    def get_model_status(self, model_name: str) -> dict:
         response = self._client.transport.perform_request(
             "GET",
             f"/_plugins/_knn/models/{model_name}"

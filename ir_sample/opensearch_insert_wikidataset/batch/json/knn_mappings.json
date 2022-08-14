@@ -1,0 +1,25 @@
+{
+    "settings": {
+        "index": {
+            "number_of_shards": 4,
+            "knn": true
+        }
+    },
+    "mappings": {
+        "properties": {
+            "text": {
+                "type": "text"
+            },
+            "version_id": {
+                "type": "text"
+            },
+            "wikidata_id": {
+                "type": "text"
+            },
+            "vector": {
+                "type": "knn_vector",
+                "model_id": "sample-model"
+            }
+        }
+    }
+}
