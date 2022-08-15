@@ -1,0 +1,36 @@
+{
+    "settings": {
+        "index": {
+            "analysis": {
+                "analyzer": {
+                    "default": {
+                        "type": "custom",
+                        "tokenizer": "kuromoji_tokenizer",
+                        "filter": [
+                            "kuromoji_part_of_speech"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "mappings": {
+        "properties": {
+            "newsid": {
+                "type": "text"
+            },
+            "context": {
+                "type": "text"
+            },
+            "isfake": {
+                "type": "integer"
+            },
+            "nchar_real": {
+                "type": "integer"
+            },
+            "nchar_fake": {
+                "type": "integer"
+            }
+        }
+    }
+}
