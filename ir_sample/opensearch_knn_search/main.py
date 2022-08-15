@@ -28,7 +28,6 @@ def main():
 
     print("knn search:")
     query = QueryBuilder.build()
-
     print(f"query={query}")
     print()
 
