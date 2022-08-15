@@ -1,0 +1,31 @@
+{
+    "settings": {
+        "index": {
+            "knn": true,
+            "knn.algo_param.ef_search": 100
+        }
+    },
+    "mappings": {
+        "properties": {
+            "name": {
+                "type": "text"
+            },
+            "price": {
+                "type": "float"
+            },
+            "vector": {
+                "type": "knn_vector",
+                "dimension": 4,
+                "method": {
+                    "name": "hnsw",
+                    "space_type": "innerproduct",
+                    "engine": "faiss",
+                    "parameters": {
+                        "ef_construction": 256,
+                        "m": 48
+                    }
+                }
+            }
+        }
+    }
+}
