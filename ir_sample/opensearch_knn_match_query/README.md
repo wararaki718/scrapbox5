@@ -9,7 +9,7 @@ pip install opensearch-py transformers fugashi torch unidic-lite
 ## download dataset
 
 ```shell
-wget -P data https://raw.githubusercontent.com/tanreinama/Japanese-Fakenews-Dataset/master/fakenews.csv
+wget -P batch/data https://raw.githubusercontent.com/tanreinama/Japanese-Fakenews-Dataset/master/fakenews.csv
 ```
 
 ## build custom opensearch
@@ -33,5 +33,6 @@ curl -XGET --insecure -u 'admin:admin' 'https://localhost:9200'
 ## run
 
 ```shell
+cd batch
 python main.py
 ```
