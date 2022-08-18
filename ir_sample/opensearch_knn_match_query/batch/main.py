@@ -17,7 +17,7 @@ def main():
     client = OpenSearchClient(ClientConfig.load())
 
     print("load news:")
-    news = NewsLoader.load(Path("data/fakenews.csv"))[:31]
+    news = NewsLoader.load(Path("data/fakenews.csv"))
     print(f"the number of data: {len(news)}")
     print()
 
