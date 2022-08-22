@@ -1,0 +1,5 @@
+version: "3"
+services:
+  batch:
+    build: .
+    image: samplen-mslib:latest
