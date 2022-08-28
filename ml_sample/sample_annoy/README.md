@@ -3,7 +3,7 @@
 ## setup
 
 ```shell
-pip install annoy
+pip install annoy numpy
 ```
 
 ## run
