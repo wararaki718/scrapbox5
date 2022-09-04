@@ -20,11 +20,17 @@ class KNN:
             if len(visits) == len(nodes):
                 break
             
+            # create candidates set
             tmp_results = []
             while True:
                 index = np.random.randint(0, len(nodes)-1)
                 node = nodes[index]
                 if index not in visits:
                     visits.add(index)
-                    candidates.put()
+                    candidates.put() # add node distances
+                    tmp_results.add() # add
+                    break
+            
+            # update list of candidates
+            
 
