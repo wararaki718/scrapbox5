@@ -3,7 +3,7 @@ from typing import List
 
 import numpy as np
 
-from node import Node
+from node import Node, NodeDistCloser
 
 
 class KNN:
@@ -27,8 +27,9 @@ class KNN:
                 node = nodes[index]
                 if index not in visits:
                     visits.add(index)
-                    candidates.put() # add node distances
-                    tmp_results.add() # add
+                    distance = np.linalg.norm(node.data, query)
+                    candidates.put(NodeDistCloser(index, distance)) # add node distances
+                    tmp_results.append(index)
                     break
             
             # update list of candidates
