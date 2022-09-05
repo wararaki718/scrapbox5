@@ -1,16 +1,19 @@
 from dataclasses import dataclass
+from typing import Optional, Set
+
 import numpy as np
 
 
 @dataclass
 class Node:
-    data: np.ndarray
-    friends: set
+    index: int
+    data: Optional[np.ndarray] = None
+    friends: Optional[Set[int]] = None
 
 
 @dataclass
 class NodeDistCloser:
-    id: int
+    node: Node
     distance: float
 
     def __lt__(self, node: "NodeDistCloser") -> bool:
