@@ -11,3 +11,7 @@ pip install faiss-cpu pandas scikit-learn matplotlib
 ```shell
 python main.py
 ```
+
+## analyze
+
+open main.ipynb on your jupyter
