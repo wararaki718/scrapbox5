@@ -3,7 +3,7 @@
 ## setup
 
 ```shell
-pip install faiss-cpu pandas
+pip install faiss-cpu pandas scikit-learn matplotlib
 ```
 
 ## run
