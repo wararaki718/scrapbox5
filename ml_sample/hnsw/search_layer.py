@@ -4,7 +4,7 @@ from node import Node, NodeDistCloser
 from treeset import TreeSet
 from utils import euclidean
 
-
+# ref: https://arxiv.org/pdf/1603.09320.pdf
 # ref: https://github.com/rust-cv/hnsw/blob/master/src/hnsw/hnsw_const.rs#L183
 def search_layer(q: np.ndarray, ep: Node, ef: int, lc: int) -> TreeSet[NodeDistCloser]:
     """
