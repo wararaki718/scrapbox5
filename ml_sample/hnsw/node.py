@@ -8,7 +8,7 @@ import numpy as np
 class Node:
     index: int
     data: Optional[np.ndarray] = None
-    friends: Set[int] = field(default_factory=set)
+    neighbors: Set["Node"] = field(default_factory=set)
 
     def __lt__(self, node: "Node") -> bool:
         return self.index < node.index

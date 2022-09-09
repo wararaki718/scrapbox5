@@ -67,3 +67,6 @@ class TreeSet:
 
     def contains(self, e: Any) -> bool:
         return e in self._treeset
+
+    def clone(self) -> "TreeSet":
+        return TreeSet(self._treeset)
