@@ -19,7 +19,7 @@ def select_neighbors_simple(q: np.ndarray, candidates: List[Node], m: int) -> Li
     
     results = []
     for _ in range(min(m, len(neighbors))):
-        results.append(neighbors.poll_first())
+        results.append(neighbors.poll_first().node)
 
     return results
 
@@ -31,3 +31,15 @@ def select_neighbors_heuristic(q: np.ndarray, candidates: List[Node], m: int, lc
     if len(extend_candidates) > 0:
         for candidate in extend_candidates:
             pass
+
+
+if __name__ == "__main__":
+    dim = 5
+    q = np.random.random(dim)
+    m = 5
+    candidates = [Node(index=i, data=np.random.random(dim)) for i in range(20)]
+
+    results = select_neighbors_simple(q, candidates, m)
+    for result in results:
+        print(result)
+    print("DONE")
