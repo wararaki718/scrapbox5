@@ -21,3 +21,6 @@ class NodeDistCloser:
 
     def __lt__(self, node: "NodeDistCloser") -> bool:
         return self.distance < node.distance
+    
+    def __str__(self) -> str:
+        return f"index={self.node.index}, distance={self.distance}"

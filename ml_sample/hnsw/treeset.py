@@ -1,5 +1,7 @@
 import bisect
-from typing import Any, Generator, List, Optional, Set, Union
+from typing import Generator, List, Optional, Set, Union
+
+from node import NodeDistCloser
 
 
 class TreeSet:
@@ -8,7 +10,7 @@ class TreeSet:
         if c is not None:
             self._add_all(c)
     
-    def __getitem__(self, index: int) -> Any:
+    def __getitem__(self, index: int) -> NodeDistCloser:
         return self._treeset[index]
     
     def __str__(self) -> str:
@@ -17,11 +19,11 @@ class TreeSet:
     def __len__(self) -> int:
         return len(self._treeset)
     
-    def __iter__(self) -> Generator[Any, None, None]:
+    def __iter__(self) -> Generator[NodeDistCloser, None, None]:
         for item in self._treeset:
             yield item
 
-    def add(self, e: Any) -> bool:
+    def add(self, e: NodeDistCloser) -> bool:
         if isinstance(e, list) or isinstance(e, set):
             return self._add_all(e)
         
@@ -31,19 +33,19 @@ class TreeSet:
         bisect.insort(self._treeset, e)
         return True
     
-    def first(self) -> Any:
+    def first(self) -> NodeDistCloser:
         return self._treeset[0]
     
-    def last(self) -> Any:
+    def last(self) -> NodeDistCloser:
         return self._treeset[-1]
     
-    def poll_first(self) -> Any:
+    def poll_first(self) -> NodeDistCloser:
         return self._treeset.pop(0)
     
-    def poll_last(self) -> Any:
+    def poll_last(self) -> NodeDistCloser:
         return self._treeset.pop()
     
-    def _add_all(self, e: Union[List[Any], Set[Any]]) -> bool:
+    def _add_all(self, e: Union[List[NodeDistCloser], Set[NodeDistCloser]]) -> bool:
         is_added = False
         for item in e:
             if item in self._treeset:
@@ -52,7 +54,7 @@ class TreeSet:
             is_added = True
         return is_added
 
-    def remove(self, e: Any) -> bool:
+    def remove(self, e: NodeDistCloser) -> bool:
         try:
             self._treeset.remove(e)
             return True
@@ -65,7 +67,7 @@ class TreeSet:
     def is_empty(self) -> bool:
         return len(self._treeset) == 0
 
-    def contains(self, e: Any) -> bool:
+    def contains(self, e: NodeDistCloser) -> bool:
         return e in self._treeset
 
     def clone(self) -> "TreeSet":
