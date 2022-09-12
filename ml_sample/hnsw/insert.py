@@ -15,7 +15,7 @@ from utils import random_level
 def insert(layers: List[Layer], q: np.ndarray, m: int, m_max: int, ef: int, ml: int):
     """
     layers: multilayer graph
-    q: new element
+    q: new element of data
     m: number of established connections
     m_max: maximum number of connections for each element per layer
     ef: size of the dynamic candidate list
@@ -24,12 +24,18 @@ def insert(layers: List[Layer], q: np.ndarray, m: int, m_max: int, ef: int, ml: 
     # implement empty case
     # 1. first insert
     # 2. create new layer
-    l = random_level(ml)
-    if l >= len(layers):
-        cap = ef
-    else:
-        cap = 1
+    level = random_level(ml)
+    l_ep = len(layers)
+    ep = layers[-1].nodes[-1]
     
+    for lc in range(len(layers), level):
+        w = search_layer(q, ep, 1, layers[lc])
+        ep = w.first().node
     
-    
-    
+    for lc in reversed([i for i in range(min(level, l_ep))]):
+        w = search_layer(q, ep, ef, lc)
+        candidates = [item.node for item in w]
+        neighbors = select_neighbors_simple(q, candidates, m)
+        # add bidirectional connections
+        for neighbor in neighbors:
+            pass
