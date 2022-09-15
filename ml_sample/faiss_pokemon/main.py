@@ -14,6 +14,14 @@ def show(names: list, index: int, distances: np.ndarray, indices: np.ndarray):
     print()
 
 
+def show_status(hnsw: faiss.IndexHNSWFlat):
+    print(f"max_level: {hnsw.hnsw.max_level}")
+    for i in range(hnsw.hnsw.max_level, -1, -1):
+        hnsw.hnsw.print_neighbor_stats(i)
+        print()
+    print()
+
+
 def min_max_scaler(x: np.ndarray) -> np.ndarray:
     x_min = x.min(axis=0, keepdims=True)
     x_max = x.max(axis=0, keepdims=True)
@@ -33,6 +41,8 @@ def main():
     hnsw.add(x)
     print("added features")
     print()
+
+    show_status(hnsw)
 
     index = random.randint(0, len(names)-1)
     query = features[index].reshape((1, -1))
