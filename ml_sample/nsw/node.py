@@ -8,7 +8,7 @@ import numpy as np
 class Node:
     index: int
     vector: np.ndarray
-    neighbors: Set["Node"] = field(default_factory=set())
+    neighbors: Set["Node"] = field(default_factory=set)
 
 
 @dataclass

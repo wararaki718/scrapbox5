@@ -6,7 +6,7 @@ from node import Node
 from utils import distance
 
 
-def search(q: np.ndarray, node: Node) -> Node:
+def greedy_search(q: np.ndarray, node: Node) -> Node:
     d_min = distance(q, node.vector)
     node_next = None
 
@@ -19,4 +19,9 @@ def search(q: np.ndarray, node: Node) -> Node:
     if node_next is None:
         return node
     
-    return search(q, node_next)
+    return greedy_search(q, node_next)
+
+
+def search(q: np.ndarray, nodes: List[Node]) -> Node:
+    entry_point = np.random.choice(nodes)
+    return greedy_search(q, entry_point)

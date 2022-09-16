@@ -20,7 +20,7 @@ def knn_search(nodes: List[Node], q: np.ndarray, m: int, k: int) -> List[Node]:
         )
         tmp_results.clear()
 
-        while True:
+        while not candidates.is_empty():
             nearest = candidates.poll_first()
             if len(results) >= k and results[k].distance < nearest.distance:
                 break
