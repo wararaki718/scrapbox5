@@ -12,7 +12,7 @@ def main():
     n_clusters = 128
     ivf = IVF(n_clusters)
     ivf.fit(x)
-    indices, distances = ivf.search(x_test, k=20)
+    indices, distances = ivf.search(x_test, k=10)
     print(indices)
     print(distances)
     print("DONE")
