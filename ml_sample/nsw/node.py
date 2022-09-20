@@ -10,6 +10,12 @@ class Node:
     vector: np.ndarray
     neighbors: Set["Node"] = field(default_factory=set)
 
+    def contains(self, node: "Node") -> bool:
+        for neighbor in self.neighbors:
+            if neighbor.index == node.index:
+                return True
+        return False
+
 
 @dataclass
 class NodeDistCloser:

@@ -7,8 +7,9 @@ from node import Node
 def insert(nodes: List[Node], new_node: Node, f: int, w: int):
     neighbors = knn_search(nodes, new_node.vector, w, f)
     for neighbor in neighbors:
-        neighbor.neighbors.add(new_node)
-        new_node.neighbors.add(neighbor)
+        if not neighbor.contains(new_node):
+            neighbor.neighbors.add(new_node)
+            new_node.neighbors.add(neighbor)
 
 
 def build(nodes: List[Node], f: int, w: int):
