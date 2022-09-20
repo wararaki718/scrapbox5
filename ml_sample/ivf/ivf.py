@@ -18,8 +18,8 @@ class IVF:
             self._posting_list_index[y_pred].append(i)
     
     def search(self, query: np.ndarray, k: int=5, n_probes: int=5) -> Tuple[np.ndarray, np.ndarray]:
-        distances = self._model.transform(query.reshape(1, -1))[0]
-        clusters = np.argsort(distances)[:n_probes]
+        cdistances = self._model.transform(query.reshape(1, -1))[0]
+        clusters = np.argsort(cdistances)[:n_probes]
         x = np.vstack(
             [
                 np.array(self._posting_list_data[cluster])
