@@ -11,3 +11,5 @@ pip install datasketch
 ```shell
 python main.py
 ```
+
+refs: http://ekzhu.com/datasketch/lsh.html#minhash-lsh-at-scale
