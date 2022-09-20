@@ -9,6 +9,7 @@ def main():
     m1 = MinHash(num_perm=n_perm)
     m2 = MinHash(num_perm=n_perm)
     m3 = MinHash(num_perm=n_perm)
+
     byte_length = 4
     for d in v1:
         m1.update(d.to_bytes(byte_length, byteorder="big"))
