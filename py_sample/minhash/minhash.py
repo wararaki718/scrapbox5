@@ -9,6 +9,7 @@ HASH_RANGE = (1<<32)
 
 class MinHash:
     def __init__(self, n_perm: int=128, seed: int=42):
+        self._seed = seed
         self._n_perm = n_perm
         self._hashvalues = np.ones(n_perm, dtype=np.uint64)*MAX_HASH
         gen = np.random.RandomState(seed)
@@ -26,6 +27,7 @@ class MinHash:
         p = np.bitwise_and((i*value+j)%MERSENNE_PRIME, MAX_HASH)
         self._hashvalues = np.minimum(p, self._hashvalues)
     
+    @property
     def values(self) -> np.ndarray:
         return self._hashvalues
     
