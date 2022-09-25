@@ -7,9 +7,9 @@ def main():
     m1 = MinHash()
     m2 = MinHash()
     m3 = MinHash()
-    a = [1, 2, 3, 4, 5]
-    b = [3, 4, 5, 6, 7]
-    c = [1, 3, 4, 5, 6]
+    a = [1, 3, 5, 6]
+    b = [2, 3, 5, 6]
+    c = [2, 4, 6, 7]
 
     byte_len = 4
     for i in a:
@@ -27,7 +27,7 @@ def main():
     print(s2)
     
     
-    lsh = LSH()
+    lsh = LSH(threshold=0.5)
     lsh.insert("m2", m2)
     lsh.insert("m3", m3)
 

@@ -1,18 +1,18 @@
 from collections import defaultdict
 
 from minhash import MinHash
+from optim import optimal_param
 
 
 class LSH:
-    def __init__(self, n_perm: int=128, threshold: float=0.9):
-        self._r = 32
-        self._b = int(n_perm/self._r)
+    def __init__(self, n_perm: int=128, threshold: float=0.5):
+        self._b, self._r = optimal_param(threshold,n_perm)
         self._tables = [
             defaultdict(set)
             for _ in range(self._b)
         ]
         self._keys = defaultdict(set)
-        self._buffer_size = 5000
+        self._buffer_size = 50000
         self._n_perm = n_perm
         self._threshold = threshold
     
@@ -23,7 +23,7 @@ class LSH:
         ]
         self._keys[key].update(*hs)
         for h, table in zip(hs, self._tables):
-            table[key].update(h)
+            table[h].update([key])
     
     def query(self, q: MinHash) -> set:
         results = set()
