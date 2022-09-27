@@ -12,6 +12,9 @@ class Node:
 
     def __lt__(self, node: "Node") -> bool:
         return self.index < node.index
+    
+    def __eq__(self, node: "Node") -> bool:
+        return self.index == node.index
 
 
 @dataclass
