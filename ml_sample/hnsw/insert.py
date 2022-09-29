@@ -23,7 +23,7 @@ def _add(layers: List[Layer], node: Node, nodes: List[Node], level: int):
 # ref: https://github.com/rust-cv/hnsw/blob/master/src/hnsw/hnsw_const.rs#L144
 def insert(data: np.ndarray,
            layers: List[Layer],
-           q_index: np.ndarray,
+           q_index: int,
            ep: Optional[Node],
            ep_level: int,
            m: int,
@@ -58,11 +58,17 @@ def insert(data: np.ndarray,
         neighbors = select_neighbors_simple(data[q_index], candidates, m)
 
         # todo: add bidirectional connections
-    
+        new_node = Node(q_index, data[q_index])
         for neighbor in neighbors:
-            if len(neighbor.neighbors) > m_max:
-                new_neighbors = select_neighbors_simple(neighbor, neighbor.neighbors, m_max, lc)
-                for new_neighbor in new_neighbors:
-                    pass
+            new_node.neighbors.add(neighbor)
+            neighbor.neighbors.add(new_node)
+    
+        ### if needed
+        # for neighbor in neighbors:
+        #     if len(neighbor.neighbors) > m_max:
+        #         new_neighbors = select_neighbors_simple(neighbor, neighbor.neighbors, m_max, lc)
+        #         for new_neighbor in new_neighbors:
+        #             pass
+        ep = w
     
     return ep, ep_level
