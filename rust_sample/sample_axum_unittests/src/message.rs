@@ -1,7 +1,7 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 
-#[derive(Serialize)]
+#[derive(Deserialize, Serialize)]
 pub struct Message {
     pub context: String
 }
