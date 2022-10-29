@@ -37,6 +37,14 @@ def main():
     X_train, X_test = train_test_split(X)
     print(X_train.shape)
     print(X_test.shape)
+    print(X.data.shape)
+    print(X_train.data.shape)
+    print(X_test.data.shape)
+
+    import collections
+    print(collections.Counter(X.data))
+    print(collections.Counter(X_train.data))
+    print(collections.Counter(X_test.data))
 
     print("DONE")
 
