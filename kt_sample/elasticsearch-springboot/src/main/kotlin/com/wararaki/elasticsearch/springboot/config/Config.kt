@@ -11,7 +11,7 @@ import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories
 
 @Configuration
-@EnableElasticsearchRepositories(basePackages = "com.wararaki.elasticsearch.springboot.repository")
+@EnableElasticsearchRepositories(basePackages = ["com.wararaki.elasticsearch.springboot.repository"])
 @ComponentScan
 class Config {
     @Bean
