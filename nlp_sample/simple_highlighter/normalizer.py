@@ -18,7 +18,7 @@ class DakutenNormalizer:
                 continue
             tokens[i].fixed_char = ""
             tokens[i-1].fixed_char = c
-            tokens[i-1].fixed_start -= index
+            tokens[i-1].fixed_index -= index
             index += 1
             
         return tokens

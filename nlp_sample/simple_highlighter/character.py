@@ -3,8 +3,8 @@ from dataclasses import dataclass
 
 @dataclass
 class Character:
-    base_start: int
-    fixed_start: int
+    base_index: int
+    fixed_index: int
     base_char: str   # character
     fixed_char: str  # character
 

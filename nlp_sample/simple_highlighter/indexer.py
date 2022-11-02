@@ -7,8 +7,8 @@ class CharacterIndexer:
     def index(self, text: str) -> List[Character]:
         return [
             Character(
-                base_start=i,
-                fixed_start=i,
+                base_index=i,
+                fixed_index=i,
                 base_char=c,
                 fixed_char=c
             )

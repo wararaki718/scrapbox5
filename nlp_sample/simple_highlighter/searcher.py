@@ -28,10 +28,10 @@ class PositionSearcher:
             #print(f"base={base}, target={target}")
             if target == base:
                 position = Position(
-                    start = target_tokens[i].base_start,
-                    end = target_tokens[i+j-1].base_start + 1 # exclude offset
+                    start = target_tokens[i].base_index,
+                    end = target_tokens[i+j-1].base_index + 1 # exclude offset
                 )
-                #print(target_tokens[i], target_tokens[i].start)
-                #print(target_tokens[i+j-1], target_tokens[i+j-1].start)
+                #print(target_tokens[i], target_tokens[i].base_index)
+                #print(target_tokens[i+j-1], target_tokens[i+j-1].base_index)
                 positions.append(position)
         return positions
