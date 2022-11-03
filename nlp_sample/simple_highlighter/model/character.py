@@ -4,8 +4,6 @@ from dataclasses import dataclass
 @dataclass
 class Character:
     base_index: int
-    fixed_index: int
-    base_char: str   # character
     fixed_char: str  # character
 
     def is_empty(self) -> bool:

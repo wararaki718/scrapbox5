@@ -1,4 +1,4 @@
-from position import Position
+from model import Position
 
 
 class PositionFormatter:
@@ -6,7 +6,7 @@ class PositionFormatter:
         pass
 
     def format(self, position: Position, text: str) -> Position:
+        # dakuten
         if position.end < len(text) and text[position.end] == "゛":
             position.end += 1
-        #print(position, text[position.start:position.end])
         return position

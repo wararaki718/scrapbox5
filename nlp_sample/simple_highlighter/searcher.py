@@ -1,7 +1,6 @@
 from typing import List
 
-from position import Position
-from character import Character
+from model import Character, Position
 
 
 class PositionSearcher:
@@ -15,23 +14,16 @@ class PositionSearcher:
         """
         positions = []
         base = "".join(map(str, base_tokens))
-        for i in range(len(target_tokens)):
-            if target_tokens[i].is_empty() or target_tokens[i] != base_tokens[0]:
-                continue
-            
-            target = ""
-            j = 0
-            while i+j < len(target_tokens) and len(target) < len(base):
-                target += str(target_tokens[i+j])
-                j += 1
+        target = "".join(map(str, target_tokens[:len(base)-1]))
 
-            #print(f"base={base}, target={target}")
+        for i, token in enumerate(target_tokens[len(target):]):
+            target += str(token)
             if target == base:
                 position = Position(
                     start = target_tokens[i].base_index,
-                    end = target_tokens[i+j-1].base_index + 1 # exclude offset
+                    end = target_tokens[i+len(target)-1].base_index + 1 # add exclude offset
                 )
-                #print(target_tokens[i], target_tokens[i].base_index)
-                #print(target_tokens[i+j-1], target_tokens[i+j-1].base_index)
                 positions.append(position)
+            target = target[1:]
+
         return positions

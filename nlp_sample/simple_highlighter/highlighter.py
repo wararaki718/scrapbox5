@@ -2,8 +2,8 @@ from typing import List
 
 from formatter import PositionFormatter
 from indexer import CharacterIndexer
+from model import Position
 from normalizer import CharacterNormalizer
-from position import Position
 from searcher import PositionSearcher
 
 
