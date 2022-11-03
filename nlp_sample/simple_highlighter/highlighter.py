@@ -1,6 +1,6 @@
 from typing import List
 
-from formatter import PositionFormatter
+from adjuster import PositionAdjuster
 from indexer import CharacterIndexer
 from model import Position
 from normalizer import CharacterNormalizer
@@ -12,7 +12,7 @@ class Highlighter:
         self._indexer = CharacterIndexer()
         self._normalizer = CharacterNormalizer()
         self._searcher = PositionSearcher()
-        self._formatter = PositionFormatter()
+        self._adjuster = PositionAdjuster()
 
     def highlight(self, keywords: List[str], text: str) -> List[Position]:
         text_tokens = self._indexer.index(text)
@@ -22,6 +22,6 @@ class Highlighter:
             keyword_tokens = self._indexer.index(keyword)
             keyword_tokens = self._normalizer.normalize(keyword_tokens)
             positions = self._searcher.search(keyword_tokens, text_tokens)
-            positions = [self._formatter.format(position, text) for position in positions]
+            positions = [self._adjuster.adjust(position, text) for position in positions]
             results.extend(positions)
         return results
