@@ -22,6 +22,6 @@ class Highlighter:
             keyword_tokens = self._indexer.index(keyword)
             keyword_tokens = self._normalizer.normalize(keyword_tokens)
             positions = self._searcher.search(keyword_tokens, text_tokens)
-            positions = [self._adjuster.adjust(position, text) for position in positions]
+            positions = self._adjuster.adjust(positions, text)
             results.extend(positions)
         return results
