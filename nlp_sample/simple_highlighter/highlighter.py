@@ -17,10 +17,14 @@ class Highlighter:
         norm_text_tokens = self._normalizer.normalize(text_tokens)
         results = []
         for keyword in keywords:
+            # search original
             keyword_tokens = self._indexer.index(keyword)
-            norm_keyword_tokens = self._normalizer.normalize(keyword_tokens)
             positions = self._searcher.search(keyword_tokens, text_tokens)
+
+            # search norm
+            norm_keyword_tokens = self._normalizer.normalize(keyword_tokens)
             norm_positions = self._searcher.search(norm_keyword_tokens, norm_text_tokens)
+            
             positions = list(set(positions)|set(norm_positions))
             positions.sort()
             results.extend(positions)
