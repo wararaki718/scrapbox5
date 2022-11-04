@@ -1,6 +1,6 @@
 from typing import List
 
-from model import Character
+from schema import Character
 
 
 class CharacterIndexer:
@@ -10,5 +10,5 @@ class CharacterIndexer:
                 base_index=i,
                 fixed_char=c
             )
-            for i, c in enumerate(list(text))
+            for i, c in enumerate(list(text) + ["EOF"])
         ]

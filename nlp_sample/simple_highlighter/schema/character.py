@@ -13,4 +13,6 @@ class Character:
         return self.fixed_char == other.fixed_char
 
     def __str__(self) -> str:
+        if self.fixed_char == "EOF":
+            return ""
         return self.fixed_char

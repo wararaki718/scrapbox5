@@ -1,8 +1,9 @@
+import copy
 from typing import List
 
 from .eliminater import EmptyCharacterEliminator
 from .encoder import DakutenEncoder
-from model import Character
+from schema import Character
 
 
 class CharacterNormalizer:
@@ -11,6 +12,7 @@ class CharacterNormalizer:
         self._eliminator = EmptyCharacterEliminator()
 
     def normalize(self, tokens: List[Character]) -> List[Character]:
+        tokens = copy.deepcopy(tokens) # memory cost
         tokens = self._encoder.encode(tokens)
         tokens = self._eliminator.eliminate(tokens)
         return tokens

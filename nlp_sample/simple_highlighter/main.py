@@ -1,7 +1,7 @@
 from typing import List
 
 from highlighter import Highlighter
-from model import Position
+from schema import Position
 
 
 def show(text: str, positions: List[Position]):
@@ -19,7 +19,7 @@ def show(text: str, positions: List[Position]):
 
 
 def main():
-    keywords = ["こんにちわ", "プログラマ", "す。", "プロク゛", "。", "ク゛ク゛"]
+    keywords = ["こんにちわ", "プログラマ", "す。", "プロク゛", "。", "ク゛ク゛", "desu.", "゛"]
     text = "こんにちわ、ほ゛くはプロク゛ラマです。プロク゛ク゛ク゛ク゛ラマdesu."
 
     highlighter = Highlighter()

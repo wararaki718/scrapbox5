@@ -1,6 +1,6 @@
 from typing import List
 
-from model import Character
+from schema import Character
 
 
 class EmptyCharacterEliminator:
