@@ -19,8 +19,8 @@ def show(text: str, positions: List[Position]):
 
 
 def main():
-    keywords = ["こんにちわ", "プログラマ", "す。", "プロク゛", "。", "ク゛ク゛", "desu.", "゛"]
-    text = "こんにちわ、ほ゛くはプロク゛ラマです。プロク゛ク゛ク゛ク゛ラマdesu."
+    keywords = ["こんにちわ", "プログラマ", "す。", "プロク゛", "。", "ク゛ク゛", "desu.", "゛", "10", "F1"]
+    text = "こんにちわ、ほ゛くはプロク゛ラマです。プロク゛ク゛ク゛ク゛ラマdesu.FFX."
 
     highlighter = Highlighter()
     positions = highlighter.highlight(keywords, text)

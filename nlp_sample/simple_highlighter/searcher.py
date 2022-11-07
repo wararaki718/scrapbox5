@@ -13,6 +13,8 @@ class PositionSearcher:
         base = "".join(map(str, base_tokens))
         target = "".join(map(str, target_tokens))
 
+        #print(base)
+        #print(target)
         for i in range(len(target)-len(base)+1):
             if target[i:i+len(base)] == base:
                 position = Position(
