@@ -15,6 +15,6 @@ class DakutenEncoder:
             c = self._dakuten_maps.get(str(tokens[i - 1]))
             if "゛" != str(tokens[i]) or c is None:
                 continue
-            tokens[i].fixed_char = ""
-            tokens[i-1].fixed_char = c
+            tokens[i].value = ""
+            tokens[i-1].value = c
         return tokens

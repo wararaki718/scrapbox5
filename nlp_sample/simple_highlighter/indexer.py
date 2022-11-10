@@ -7,8 +7,8 @@ class CharacterIndexer:
     def index(self, text: str) -> List[Character]:
         return [
             Character(
-                base_index=i,
-                fixed_char=c
+                index=i,
+                value=c
             )
             for i, c in enumerate(list(text) + ["EOF"])
         ]

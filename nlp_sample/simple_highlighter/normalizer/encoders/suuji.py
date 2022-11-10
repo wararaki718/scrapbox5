@@ -1,6 +1,6 @@
 from typing import List
 
-from schema import Character
+from schema import Character, LinkType
 
 
 class SuujiEncoder:
@@ -8,6 +8,7 @@ class SuujiEncoder:
         n = len(tokens)
         for i in range(n-1, -1, -1):
             if str(tokens[i]) == "X":
-                tokens[i].fixed_char = "10"
-
+                tokens[i].value = "1"
+                tokens[i].link = LinkType.HEAD
+                tokens.insert(i+1, Character(index=tokens[i].index, value="0", link=LinkType.TAIL))
         return tokens
