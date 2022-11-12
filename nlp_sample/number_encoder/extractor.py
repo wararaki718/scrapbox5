@@ -16,18 +16,18 @@ class NumberExtractor:
         positions = []
         index = None
         for i, c in enumerate(list(s+" ")):
-            if c not in self._target:
-                if 0 < i < len(s) and (c == "," or c == ".") and (s[i-1].isdigit() and s[i+1].isdigit()):
-                    continue
-
-                if index is not None:
-                    positions.append(Position(start=index, end=i))
-                    index = None
-
+            if c in self._target:
+                if index is None:
+                    index = i
                 continue
-            
-            if index is None:
-                index = i
+
+            # commma and dot check
+            if 0 < i < len(s) and (c == "," or c == ".") and (s[i-1].isdigit() and s[i+1].isdigit()):
+                continue
+
+            if index is not None:
+                positions.append(Position(start=index, end=i))
+                index = None
 
         if index is not None:
             positions.append(Position(start=index,end=len(s)))
