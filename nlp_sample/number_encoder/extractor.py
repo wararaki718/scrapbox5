@@ -63,7 +63,8 @@ if __name__ == "__main__":
         "FF10,10人月で開発しました。",
         "FF10,十人月で開発しました。",
         "10.6億円",
-        "0.6人月"
+        "0.6人月",
+        "110.110.110.110"
     ]
     for text in texts:
         positions = extractor.extract(text)
