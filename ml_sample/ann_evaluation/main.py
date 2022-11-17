@@ -26,24 +26,25 @@ def show(y_trues: np.ndarray, y_preds: np.ndarray, k: int=10):
 def main():
     #n_train = 100_000_000
     #n_test = 10_000
-    n_train = 10_000
-    n_test = 100
+    n_train = 100_000
+    n_test = 1000
+    k = 25
     config = ANNConfig()
 
     X_train = get_data(n_train, config.n_dimensions)
     X_test = get_data(n_test, config.n_dimensions)
     
     l2 = Flat(config.n_dimensions, config.metric_type)
-    y_test = get_label(X_train, X_test, l2, top_n=10)
+    y_test = get_label(X_train, X_test, l2, top_n=k)
     del l2
     gc.collect()
 
     hnsw = HNSW(**config.to_dict())
     hnsw.add(X_train)
-    _, y = hnsw.search(X_test, k=5)
+    _, y = hnsw.search(X_test, k=k)
 
     print("[hnsw]")
-    show(y_test, y, k=5)
+    show(y_test, y, k=k)
 
     print("DONE")
 

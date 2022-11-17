@@ -41,6 +41,13 @@ def mrr_at_k(y_trues: np.ndarray, y_preds: np.ndarray, k: int=10) -> float:
 
 def map_at_k(y_trues: np.ndarray, y_preds: np.ndarray, k: int=10) -> float:
     total = 0.0
-    for i in range(1, k+1):
-        total += precision_at_k(y_trues, y_preds, i)
-    return total / len(y_trues)
+    for y_true, y_pred in zip(y_trues, y_preds):
+        n = 0
+        tmp = 0.0
+        for i, y in enumerate(y_pred[:k], start=1):
+            if y in y_true:
+                n += 1
+                tmp += (n / i)
+        total += tmp / n
+    
+    return total / len(y_preds)
