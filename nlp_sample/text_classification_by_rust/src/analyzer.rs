@@ -16,11 +16,11 @@ impl TextAnalyzer {
 
 
 impl TextAnalyzer {
-    pub fn analyze<'a>(&'a self, text: &'a str) -> Vec<Token> {
+    pub fn analyze<'a>(&'a self, text: &'a str) -> Vec<&str> {
         let tokens = match self.tokenizer.tokenize(&text) {
             Ok(tokens) => tokens,
             Err(_e) => Vec::<Token>::new()
         };
-        return tokens;
+        return tokens.into_iter().map(|token| { token.text }).collect();
     }
 }
