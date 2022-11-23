@@ -6,31 +6,27 @@ use ndarray::Array;
 
 fn main() {
     let text_analyzer = TextAnalyzer::new();
-    let text = "東京でご飯を食べます。";
-    let tokens = text_analyzer.analyze(text);
-    for token in &tokens {
-        println!("token: {}", token);
-    }
 
     let docs = vec![
-        "東京 で ご飯 を 食べ ます 。",
-        "大阪 で ご飯 を 食べ ます 。",
-        "東京 に 行き ます 。",
-        "京都 に 行き ます 。"
+        "東京でご飯を食べます。",
+        "大阪でご飯を食べます。",
+        "東京に行きます。",
+        "京都に行きます。"
     ];
-    // let docs = vec![
-    //     "I have a pen",
-    //     "This is a pen",
-    //     "you have a pen",
-    //     "that is an apple"
-    // ];
-    let x = Array::from_vec(docs);
+    let mut texts = Vec::new();
+    for doc in &docs {
+        let text = text_analyzer.analyze(doc);
+        texts.push(text.join(" "));
+    }
+    let x = Array::from_vec(texts);
     println!("{:?}", x);
     println!("{}, {:?}", x.ndim(), x.dim());
     
     let vectorizer = TfIdfVectorizer::default().fit(&x).unwrap();
     println!("{:?}", vectorizer.vocabulary());
-
+    
+    let vecs = vectorizer.transform(&x);
+    println!("{:?}", vecs);
 
     println!("DONE");
 }
