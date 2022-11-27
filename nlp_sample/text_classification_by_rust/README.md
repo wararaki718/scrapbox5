@@ -1,5 +1,11 @@
 # text classification
 
+## download data
+
+```shell
+bash download.sh
+```
+
 ## build
 
 ```shell
