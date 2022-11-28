@@ -1278,6 +1278,7 @@ name = "text_classification_by_rust"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "glob",
  "lindera",
  "linfa",
  "linfa-preprocessing",

@@ -1,6 +1,6 @@
-# text classification
+# load text files
 
-## download data
+## setup
 
 ```shell
 bash download.sh
