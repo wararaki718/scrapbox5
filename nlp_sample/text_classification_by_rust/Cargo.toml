@@ -8,6 +8,7 @@ anyhow = "1.0.48"
 glob = "0.3.0"
 lindera = { version = "0.12.0", features = ["full"] }
 linfa = "0.6.0"
+linfa-logistic = "0.6.1"
 linfa-preprocessing = "0.6.0"
 ndarray = "0.15.6"
 rand = "0.8.5"

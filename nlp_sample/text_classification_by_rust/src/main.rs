@@ -4,6 +4,9 @@ mod loader;
 mod parser;
 mod train_test_split;
 
+use linfa::Dataset;
+use linfa::prelude::*;
+use linfa_logistic::LogisticRegression;
 use linfa_preprocessing::tf_idf_vectorization::TfIdfVectorizer;
 use ndarray::Array;
 
@@ -45,10 +48,21 @@ fn main() {
     
     let vectorizer = TfIdfVectorizer::default().fit(&x_train).unwrap();
     //println!("{:?}", vectorizer.vocabulary());
-    let vecs = vectorizer.transform(&x_test);
+    let train_features = vectorizer.transform(&x_train);
+    let test_features = vectorizer.transform(&x_test);
 
-    println!("{:?}", vecs.shape());
-    println!("{:?}", y_test.shape());
+    let train = Dataset::new(train_features.to_dense(), y_train);
+    let test = Dataset::new(test_features.to_dense(), y_test);
+
+    let model = LogisticRegression::default().max_iterations(150).fit(&train).unwrap();
+    let preds = model.predict(&test);
+    let cm = preds.confusion_matrix(&test).unwrap();
+
+    println!("{:?}", cm);
+    println!("accuracy: {}, MCC: {}", cm.accuracy(), cm.mcc());
+
+    // println!("{:?}", vecs.shape());
+    // println!("{:?}", y_test.shape());
 
     println!("DONE");
 }
