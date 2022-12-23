@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation("org.opensearch.client:opensearch-rest-high-level-client:2.1.0")
+    implementation("org.opensearch.client:opensearch-rest-high-level-client:2.4.1")
     testImplementation(kotlin("test"))
 }
 

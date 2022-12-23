@@ -1,14 +1,10 @@
 import org.apache.http.HttpHost
-import org.apache.http.auth.AuthScope
-import org.apache.http.auth.UsernamePasswordCredentials
-import org.apache.http.impl.client.BasicCredentialsProvider
 import org.opensearch.action.admin.indices.delete.DeleteIndexRequest
 import org.opensearch.action.delete.DeleteRequest
 import org.opensearch.action.get.GetRequest
 import org.opensearch.action.index.IndexRequest
 import org.opensearch.client.RequestOptions
 import org.opensearch.client.RestClient
-import org.opensearch.client.RestClientBuilder
 import org.opensearch.client.RestHighLevelClient
 import org.opensearch.client.indices.CreateIndexRequest
 import org.opensearch.common.settings.Settings
@@ -16,15 +12,8 @@ import org.opensearch.common.settings.Settings
 
 fun main(args: Array<String>) {
     val indexName = "kotlin-test-index"
-    val credentialsProvider = BasicCredentialsProvider()
-    credentialsProvider.setCredentials(
-        AuthScope.ANY,
-        UsernamePasswordCredentials("admin", "admin")
-    )
 
-    val builder = RestClient.builder(HttpHost("localhost", 9200, "https")).setHttpClientConfigCallback(RestClientBuilder.HttpClientConfigCallback {
-        httpClientBuilder -> httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider)
-    })
+    val builder = RestClient.builder(HttpHost("localhost", 9200, "http"))
     val client = RestHighLevelClient(builder)
 
     val createIndexRequest = CreateIndexRequest(indexName)

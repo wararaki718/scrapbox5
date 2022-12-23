@@ -1,7 +1,8 @@
 version: "3"
 services:
   opensearch:
-    image: opensearchproject/opensearch:2.1.0
+    build: .
+    image: customsaerch:latest
     environment:
       - discovery.type=single-node
     ports:
