@@ -9,6 +9,7 @@ int main() {
     // setup handler
     auto handler = new InputHandler();
     auto unit = new Unit();
+    auto unit2 = new Unit();
 
     // user input
     auto buttons = {
@@ -19,7 +20,21 @@ int main() {
         ButtonType::BUTTON_NULL
     };
 
+    std::cout << "execute" << std::endl;
     handler->select(unit);
+    for(auto button : buttons) {
+        handler->press(button);
+        auto command = handler->handleInput();
+        if (command) {
+            command->execute();
+        } else {
+            std::cout << "null" << std::endl;
+        }
+    }
+    std::cout << std::endl;
+
+    std::cout << "execute + undo" << std::endl;
+    handler->select(unit2);
     for(auto button : buttons) {
         handler->press(button);
         auto command = handler->handleInput();
@@ -30,6 +45,7 @@ int main() {
             std::cout << "null" << std::endl;
         }
     }
+    std::cout << std::endl;
     
     std::cout << "DONE" << std::endl;
     return 0;
