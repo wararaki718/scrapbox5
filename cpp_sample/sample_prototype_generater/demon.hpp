@@ -8,7 +8,6 @@ class Demon: public Monster {
     public:
     Demon() {}
     Demon(int health, int speed): health_(health), speed_(speed) {}
-    virtual Monster* clone();
     virtual void show();
 
     private:

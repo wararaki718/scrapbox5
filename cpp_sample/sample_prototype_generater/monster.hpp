@@ -5,7 +5,6 @@ class Monster
 {
     public:
     virtual ~Monster() {}
-    virtual Monster* clone() = 0;
     virtual void show() = 0;
 };
 
