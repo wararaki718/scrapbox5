@@ -1,13 +1,13 @@
-from typing import List, Dict
+from typing import List
 
-from schema import Character, LinkType, Position
+from schema import Character, InvertedIndex, LinkType, Position
 
 
 class PositionSearcher:
     def search(self,
                base_tokens: List[Character],
                target_tokens: List[Character],
-               indices: Dict[str, List[int]]) -> List[Position]:
+               indices: InvertedIndex) -> List[Position]:
         """
         base_tokens: keyword
         target_tokens: text
