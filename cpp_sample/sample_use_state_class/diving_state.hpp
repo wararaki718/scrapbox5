@@ -11,8 +11,9 @@ class DivingState : public HeroineState
     public:
     DivingState() {}
 
-    virtual void handleInput(Heroine&, InputType);
+    virtual HeroineState* handleInput(Heroine&, InputType);
     virtual void update(Heroine&);
+    virtual void enter(Heroine&);
 };
 
 #endif // DIVING_STATE_HPP

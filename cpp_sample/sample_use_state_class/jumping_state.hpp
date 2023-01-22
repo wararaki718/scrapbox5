@@ -11,8 +11,9 @@ class JumpingState: public HeroineState
     public:
     JumpingState() {}
 
-    virtual void handleInput(Heroine&, InputType);
+    virtual HeroineState* handleInput(Heroine&, InputType);
     virtual void update(Heroine&);
+    virtual void enter(Heroine&);
 };
 
 #endif // JUMPING_STATE_HPP

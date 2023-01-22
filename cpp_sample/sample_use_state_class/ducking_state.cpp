@@ -6,14 +6,22 @@
 #include "image.hpp"
 #include "input.hpp"
 #include "param.hpp"
+#include "standing_state.hpp"
 
 
-void DuckingState::handleInput(Heroine& heroine, InputType input)
+HeroineState* DuckingState::handleInput(Heroine& heroine, InputType input)
 {
     if (input == InputType::RELEASE_DOWN) {
-        heroine.state_ = &HeroineState::standing;
-        heroine.setGraphic(ImageType::IMAGE_STAND);
+        return new StandingState();
     }
+
+    return nullptr;
+}
+
+
+void DuckingState::enter(Heroine& heroine)
+{
+    heroine.setGraphic(ImageType::IMAGE_DUCK);
 }
 
 

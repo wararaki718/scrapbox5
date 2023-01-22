@@ -5,9 +5,15 @@
 #include "input.hpp"
 
 
-void DivingState::handleInput(Heroine& heroine, InputType input)
+HeroineState* DivingState::handleInput(Heroine& heroine, InputType input)
 {
-    return;
+    return nullptr;
+}
+
+
+void DivingState::enter(Heroine& heroine)
+{
+    heroine.setGraphic(ImageType::IMAGE_DIVE);
 }
 
 

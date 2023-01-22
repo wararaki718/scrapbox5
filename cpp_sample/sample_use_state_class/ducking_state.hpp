@@ -1,18 +1,19 @@
 #ifndef DUCKING_STATE_HPP
 #define DUCKING_STATE_HPP
 
+#include "heroine_state.hpp"
 #include "input.hpp"
 
 class Heroine;
-class HeroineState;
 
 class DuckingState : public HeroineState
 {
     public:
     DuckingState(): chargeTime_(0) {}
 
-    virtual void handleInput(Heroine&, InputType);
+    virtual HeroineState* handleInput(Heroine&, InputType);
     virtual void update(Heroine&);
+    virtual void enter(Heroine&);
 
     private:
     int chargeTime_;

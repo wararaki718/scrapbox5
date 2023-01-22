@@ -1,24 +1,29 @@
-#include "standing_state.hpp"
+#include "ducking_state.hpp"
+#include "jumping_state.hpp"
 #include "heroine.hpp"
 #include "heroine_state.hpp"
 #include "image.hpp"
 #include "input.hpp"
+#include "standing_state.hpp"
 #include "velocity.hpp"
 
 
-void StandingState::handleInput(Heroine& heroine, InputType input)
+HeroineState* StandingState::handleInput(Heroine& heroine, InputType input)
 {
     if (input == InputType::B) {
-        heroine.state_ = &HeroineState::jumping;
-        heroine.setGraphic(ImageType::IMAGE_JUMP);
-        return;
+        return new JumpingState();
     }
 
     if (input == InputType::DOWN) {
-        heroine.state_ = &HeroineState::ducking;
-        heroine.setGraphic(ImageType::IMAGE_DUCK);
-        return;
+        return new DuckingState();
     }
+
+    return nullptr;
+}
+
+void StandingState::enter(Heroine& heroine)
+{
+    heroine.setGraphic(ImageType::IMAGE_STAND);
 }
 
 

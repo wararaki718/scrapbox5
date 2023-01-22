@@ -9,7 +9,9 @@
 class Heroine
 {
     public:
-    Heroine() {}
+    Heroine() {
+        state_ = new StandingState();
+    }
     virtual void handleInput(InputType);
     virtual void update();
     void setGraphic(ImageType);

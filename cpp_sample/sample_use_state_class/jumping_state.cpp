@@ -1,3 +1,4 @@
+#include "diving_state.hpp"
 #include "jumping_state.hpp"
 #include "heroine.hpp"
 #include "heroine_state.hpp"
@@ -5,12 +6,19 @@
 #include "input.hpp"
 
 
-void JumpingState::handleInput(Heroine& heroine, InputType input)
+HeroineState* JumpingState::handleInput(Heroine& heroine, InputType input)
 {
     if (input == InputType::DOWN) {
-        heroine.state_ = &HeroineState::diving;
-        heroine.setGraphic(ImageType::IMAGE_DIVE);
+        return new DivingState();
     }
+
+    return nullptr;
+}
+
+
+void JumpingState::enter(Heroine& heroine)
+{
+    heroine.setGraphic(ImageType::IMAGE_JUMP);
 }
 
 

@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "heroine.hpp"
+#include "heroine_state.hpp"
 #include "image.hpp"
 #include "input.hpp"
 #include "param.hpp"
@@ -9,7 +10,13 @@
 
 void Heroine::handleInput(InputType input)
 {
-    state_->handleInput(*this, input);
+    HeroineState* state = state_->handleInput(*this, input);
+    if (state != nullptr) {
+        delete state_;
+        state_ = state;
+
+        state_->enter(*this);
+    }
 }
 
 

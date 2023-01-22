@@ -3,7 +3,6 @@
 
 #include "heroine_state.hpp"
 #include "input.hpp"
-#include "velocity.hpp"
 
 class Heroine;
 
@@ -12,12 +11,9 @@ class StandingState: public HeroineState
     public:
     StandingState() {}
     
-    virtual void handleInput(Heroine&, InputType);
+    virtual HeroineState* handleInput(Heroine&, InputType);
     virtual void update(Heroine&);
-
-    private:
-    int chargeTime_{0};
-    int yVelocity_{STAND_VELOCITY};
+    virtual void enter(Heroine&);
 };
 
 #endif // STANDING_STATE_HPP
