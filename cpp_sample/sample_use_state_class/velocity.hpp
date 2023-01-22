@@ -1,0 +1,7 @@
+#ifndef VELOCITY_HPP
+#define VELOCITY_HPP
+
+#define JUMP_VELOCITY 5
+#define STAND_VELOCITY 0
+
+#endif // VELOCITY_HPP
