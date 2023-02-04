@@ -3,12 +3,12 @@
 
 #include "input_component.hpp"
 
-class Bjorn;
+class GameObject;
 
 class PlayerInputComponent: public InputComponent
 {
     public:
-    void update(Bjorn& bjorn);
+    void update(GameObject&);
 
     private:
     static const int WALK_ACCELERATION = 1;

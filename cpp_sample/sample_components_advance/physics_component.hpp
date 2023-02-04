@@ -1,22 +1,16 @@
 #ifndef PHYSICS_COMPONENT_HPP
 #define PHYSICS_COMPONENT_HPP
 
-#include "volume.hpp"
 #include "world.hpp"
 
-class Bjorn;
+class GameObject;
 
 class PhysicsComponent
 {
     public:
-    PhysicsComponent()
-    {
-        volume_ = LARGE;
-    }
-    void update(Bjorn&, World&);
-
-    private:
-    Volume volume_;
+    virtual ~PhysicsComponent() {}
+    virtual void update(GameObject&, World&) = 0;
 };
+
 
 #endif // PHYSICS_COMPONENT_HPP
