@@ -5,7 +5,7 @@ pd.options.display.float_format = "{:.10f}".format
 
 
 def main():
-    k = list(range(0, 32)) # the number of appearred three of a dice
+    k = list(range(0, 32)) # the number of appeared three of a dice
     n = 100 # the number of tests
     p = 1. / 6 # probability
 
@@ -18,9 +18,9 @@ def main():
 
     print("evaluate:")
     alpha = 0.05
-    index = 30
-    result = alpha > probs[index]
-    print(f"alpha({alpha}), prob[{index}]({probs[index]}), result: {result}")
+    n_appeared = 30
+    result = alpha > probs[n_appeared]
+    print(f"alpha({alpha}), prob[{n_appeared}]({probs[n_appeared]}), result: {result}")
     if result:
         print(f"null hypothesis [dismiss], alternative hypothesis [acceptance]")
     else:
