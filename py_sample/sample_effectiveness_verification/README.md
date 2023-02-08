@@ -3,7 +3,7 @@
 ## setup
 
 ```shell
-pip install jupyter pandas numpy scikit-learn
+pip install jupyter pandas scipy
 ```
 
 ## download
