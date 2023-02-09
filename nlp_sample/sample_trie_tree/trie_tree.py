@@ -11,10 +11,12 @@ class TrieTree:
 
     def insert(self, text: str):
         node = self._root
+        s = ""
         for c in text:
-            if not node.has(c):
-                node.add(c)
-            node = node.next(c)
+            s += c
+            if not node.has(s):
+                node.add(s)
+            node = node.next(s)
 
     def _search(self, prefix: str, node: Node) -> List[str]:
         if node.is_empty():
@@ -22,17 +24,19 @@ class TrieTree:
 
         results = []
         for child in node.next_all():
-            results.extend(self._search(prefix + child.char, child))        
+            results.extend(self._search(child.char, child))        
         return results
 
 
     def suggest(self, text: str) -> List[str]:
         # search prefix
         node = self._root
+        s = ""
         for c in text:
-            if not node.has(c):
+            s += c
+            if not node.has(s):
                 return []
-            node = node.next(c)
+            node = node.next(s)
         
         # search suggest
         return self._search(text, node)
