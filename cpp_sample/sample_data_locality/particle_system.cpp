@@ -11,6 +11,12 @@ void ParticleSystem::update()
 }
 
 
+void ParticleSystem::addParticle(Particle particle)
+{
+    particles_[numParticles_++] = particle;
+}
+
+
 void ParticleSystem::activateParticle(int index)
 {
     auto tmp = particles_[numActive_];
