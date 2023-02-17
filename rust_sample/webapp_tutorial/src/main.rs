@@ -1,5 +1,10 @@
-use axum::{response::Html, routing::get, Router};
+mod sample;
+
+use axum::{response::{Html, IntoResponse}, routing::get, Router};
 use std::net::SocketAddr;
+use askama::Template;
+
+use sample::Sample;
 
 #[tokio::main]
 async fn main() {
@@ -8,7 +13,9 @@ async fn main() {
     }
     tracing_subscriber::fmt::init();
 
-    let app = Router::new().route("/", get(handler));
+    let app = Router::new()
+        .route("/", get(handler))
+        .route("/sample", get(sample_handler));
 
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
     tracing::debug!("listening on {}", addr);
@@ -20,4 +27,10 @@ async fn main() {
 
 async fn handler() -> Html<&'static str> {
     Html("<h1>Hello, World!</h1>")
+}
+
+async fn sample_handler() -> impl IntoResponse {
+    let page = Sample {  message: "hello".to_string() };
+    let html = page.render().unwrap();
+    Html(html).into_response()
 }
