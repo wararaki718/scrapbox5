@@ -1,0 +1,40 @@
+{
+    "settings": {
+        "index": {
+            "knn": true,
+            "knn.algo_param.ef_search": 100
+        }
+    },
+    "mappings": {
+        "properties": {
+            "newsid": {
+                "type": "text"
+            },
+            "context": {
+                "type": "text"
+            },
+            "isfake": {
+                "type": "integer"
+            },
+            "nchar_real": {
+                "type": "integer"
+            },
+            "nchar_fake": {
+                "type": "integer"
+            },
+            "vector": {
+                "type": "knn_vector",
+                "dimension": 768,
+                "method": {
+                    "name": "hnsw",
+                    "space_type": "innerproduct",
+                    "engine": "faiss",
+                    "parameters": {
+                        "ef_construction": 256,
+                        "m": 48
+                    }
+                }
+            }
+        }
+    }
+}
