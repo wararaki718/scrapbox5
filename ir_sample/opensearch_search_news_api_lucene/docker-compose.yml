@@ -8,8 +8,3 @@ services:
     ports:
       - 9200:9200
       - 9600:9600
-  app:
-    image: search-app:1.0
-    build: .
-    ports:
-      - 8080:8080

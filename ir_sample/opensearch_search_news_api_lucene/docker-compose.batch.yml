@@ -1,7 +1,0 @@
-version: "3"
-services:
-  batch:
-    image: search-app:1.0
-    volumes:
-      - ./data:/opt/app/batch/data
-    entrypoint: "bash batch/docker-entrypoint.sh"

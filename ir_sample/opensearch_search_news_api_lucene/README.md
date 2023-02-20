@@ -14,7 +14,7 @@ wget -P data https://raw.githubusercontent.com/tanreinama/Japanese-Fakenews-Data
 
 ## launch apps
 
-launch opensearch and api
+launch opensearch
 
 ```shell
 docker-compose up
@@ -31,7 +31,13 @@ curl -XGET --insecure -u 'admin:admin' 'https://localhost:9200'
 create an index and insert data
 
 ```shell
-docker-compose -f docker-compose.batch.yml up
+bash batch/entrypoint.sh
+```
+
+launch api
+
+```shell
+bash batch/entrypoint.sh
 ```
 
 open http://localhost:8080/docs on your browser.

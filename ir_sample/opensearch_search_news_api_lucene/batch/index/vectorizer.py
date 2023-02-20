@@ -19,10 +19,7 @@ class BertVectorizer:
     def transform(self, news: List[News], batch_size: int = 32) -> List[List[float]]:
         vectors = []
         for i in range(0, len(news), batch_size):
-            try:
-                tokens = self._encoder(map(lambda x: x.context, news[i:i+batch_size]))
-            except UnicodeDecodeError as e:
-                continue
+            tokens = self._encoder(map(lambda x: x.context, news[i:i+batch_size]))
             out = self._model(
                 input_ids = try_gpu(tokens["input_ids"]),
                 attention_mask = try_gpu(tokens["attention_mask"])
