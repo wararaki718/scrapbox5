@@ -1,0 +1,25 @@
+version: "3.7"
+services:
+  es:
+    build: ./es
+    image: es-kuromoji:8.6.2
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      - discovery.type=single-node
+      # - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+    networks:
+      - esnet
+  # cerebro:
+  #   image: lmenezes/cerebro:0.8.5
+  #   ports:
+  #     - 9000:9000
+  #   networks:
+  #     - esnet
+  #   depends_on:
+  #     - es
+
+networks:
+  esnet:
