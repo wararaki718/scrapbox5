@@ -21,14 +21,14 @@ def main():
     mapping = MappingLoader.load(Path("json/mapping.json"))
     response = client.create_index(index_name, mapping)
     print(response["result"])
-    sleep(2)
+    sleep(5)
     print()
 
     print("insert data:")
     items = BulkLoader.load(Path("json/bulk.jsonl"))
     response = client.bulk(items)
     print(response)
-    sleep(2)
+    sleep(5)
     print()
 
     print("search:")

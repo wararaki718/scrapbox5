@@ -12,14 +12,14 @@ services:
       - xpack.security.enabled=false
     networks:
       - esnet
-  # cerebro:
-  #   image: lmenezes/cerebro:0.8.5
-  #   ports:
-  #     - 9000:9000
-  #   networks:
-  #     - esnet
-  #   depends_on:
-  #     - es
+  cerebro:
+    image: lmenezes/cerebro:0.8.5
+    ports:
+      - 9000:9000
+    networks:
+      - esnet
+    depends_on:
+      - es
 
 networks:
   esnet:

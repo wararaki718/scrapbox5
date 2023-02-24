@@ -373,13 +373,11 @@
         "fields": { 
           "suggest": { 
             "type": "text",
-            "fielddata": true,
             "search_analyzer": "suggest_search_analyzer",
             "analyzer": "suggest_index_analyzer" 
           },
           "readingform": { 
             "type": "text",
-            "fielddata": true,
             "search_analyzer": "readingform_search_analyzer",
             "analyzer": "readingform_index_analyzer" 
           } 
