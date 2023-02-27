@@ -1,4 +1,11 @@
+from pathlib import Path
+
+from loaders import TitanicLoader
+
+
 def main():
+    titanic_loader = TitanicLoader()
+
     print("DONE")
 
 
