@@ -1,15 +1,13 @@
-from dataclasses import dataclass
 from pathlib import Path
 
 import yaml
+from pydantic import BaseModel
 
 
-@dataclass
-class BatchConfig:
+class BatchConfig(BaseModel):
     titanic_path: Path
-
-    def __post_init__(self):
-        self.titanic_path = Path(self.titanic_path)
+    model_path: Path
+    vectorizer_path: Path
 
     @classmethod
     def load(cls, config_path: Path) -> "BatchConfig":

@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from .embarked import EmbarkedVectorizer
+from .components import EmbarkedVectorizer
 
 
 class TitanicVectorizer:
