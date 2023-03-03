@@ -1,0 +1,5 @@
+predictor_config:
+  estimator_config:
+    model_path: ./api/model/model.pkl
+  vectorizer_config:
+    vectorizer_path: ./api/model/vectorizer.pkl
