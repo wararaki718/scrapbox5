@@ -2,7 +2,7 @@ from pathlib import Path
 
 import joblib
 
-from app.batch.vectorizer import TitanicVectorizer
+from project_template.batch.vectorizer import TitanicVectorizer
 
 
 class VectorizerDumper:

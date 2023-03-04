@@ -8,7 +8,7 @@ from .schema.config import BatchConfig
 from .vectorizer import TitanicVectorizer
 
 
-def main(config_path: str = "app/batch/config.yml"):
+def main(config_path: str = "project_template/batch/config.yml"):
     config = BatchConfig.load(Path(config_path))
 
     titanic_loader = TitanicLoader()

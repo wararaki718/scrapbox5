@@ -3,5 +3,5 @@ services:
   app:
     entrypoint: "poetry run batch-runner"
     volumes:
-      - ./data:/opt/ml/app/batch/data
-      - ./model:/opt/ml/app/batch/model
+      - ./data:/opt/ml/project_template/data
+      - ./model:/opt/ml/project_template/model

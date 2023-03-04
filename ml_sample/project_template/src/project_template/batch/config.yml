@@ -1,0 +1,3 @@
+titanic_path: project_template/data/titanic.csv
+model_path: project_template/model/model.pkl
+vectorizer_path: project_template/model/vectorizer.pkl

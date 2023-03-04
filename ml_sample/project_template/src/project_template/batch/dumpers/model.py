@@ -2,7 +2,7 @@ from pathlib import Path
 
 import joblib
 
-from app.batch.estimator import SurviverClassifier
+from project_template.batch.estimator import SurviverClassifier
 
 
 class ModelDumper:
