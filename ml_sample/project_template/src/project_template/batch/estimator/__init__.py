@@ -1,4 +1,4 @@
-from .estimator import SurviverClassifier
+from .classifier import SurviverClassifier
 
 
 __all__ = [
