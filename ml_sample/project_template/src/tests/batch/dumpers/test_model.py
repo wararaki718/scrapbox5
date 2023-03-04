@@ -7,7 +7,6 @@ import pytest
 from project_template.batch.dumpers import ModelDumper
 
 
-
 @pytest.fixture
 def dumper() -> ModelDumper:
     return ModelDumper()
