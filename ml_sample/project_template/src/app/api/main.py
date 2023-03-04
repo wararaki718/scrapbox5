@@ -9,7 +9,7 @@ from .schema.response import Result
 
 
 app = FastAPI()
-config = APIConfig.load(Path("api/config.yml"))
+config = APIConfig.load(Path("app/api/config.yml"))
 predictor = SurvivePredictor(config.predictor_config)
 
 

@@ -1,14 +1,13 @@
 from pathlib import Path
-from typing import Any
 
 import joblib
 
-#from ..estimator import SurviverClassifier
+from app.batch.estimator import SurviverClassifier
 
 
 class ModelDumper:
     def __init__(self):
         pass
 
-    def dump(self, classifier: Any, model_path: Path):
+    def dump(self, classifier: SurviverClassifier, model_path: Path):
         joblib.dump(classifier._model, model_path)

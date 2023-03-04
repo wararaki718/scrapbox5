@@ -1,8 +1,8 @@
 import numpy as np
 
 from .components import EmbarkedVectorizer
-from api.schema.config import VectorizerConfig
-from api.schema.data import PreprocessedData
+from app.api.schema.config import VectorizerConfig
+from app.api.schema.data import PreprocessedData
 
 
 class PassengerVectorizer:

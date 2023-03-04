@@ -1,0 +1,3 @@
+titanic_path: app/batch/data/titanic.csv
+model_path: app/batch/model/model.pkl
+vectorizer_path: app/batch/model/vectorizer.pkl

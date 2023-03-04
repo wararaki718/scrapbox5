@@ -1,6 +1,6 @@
 from .components import AgesCategorizer
-from api.schema.data import PreprocessedData
-from api.schema.request import Passenger
+from app.api.schema.data import PreprocessedData
+from app.api.schema.request import Passenger
 
 
 class PassengerPreprocessor:

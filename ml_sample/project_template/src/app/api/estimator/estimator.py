@@ -1,7 +1,7 @@
 import joblib
 import numpy as np
 
-from api.schema.config import EstimatorConfig
+from app.api.schema.config import EstimatorConfig
 
 
 class SurviveEstimator:

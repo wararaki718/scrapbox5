@@ -1,16 +1,14 @@
 from pathlib import Path
 
-import typer
-
-from dumpers import ModelDumper, VectorizerDumper
-from estimator import SurviverClassifier
-from loaders import TitanicLoader
-from preprocessor import TitanicPreprocessor
-from schema.config import BatchConfig
-from vectorizer import TitanicVectorizer
+from .dumpers import ModelDumper, VectorizerDumper
+from .estimator import SurviverClassifier
+from .loaders import TitanicLoader
+from .preprocessor import TitanicPreprocessor
+from .schema.config import BatchConfig
+from .vectorizer import TitanicVectorizer
 
 
-def main(config_path: str = typer.Argument("batch/config.yml")):
+def main(config_path: str = "app/batch/config.yml"):
     config = BatchConfig.load(Path(config_path))
 
     titanic_loader = TitanicLoader()
@@ -39,7 +37,3 @@ def main(config_path: str = typer.Argument("batch/config.yml")):
 
     print("save models.")
     print("DONE")
-
-
-if __name__ == "__main__":
-    typer.run(main)
