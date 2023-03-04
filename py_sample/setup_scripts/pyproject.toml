@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "setup-scripts"
+version = "0.1.0"
+description = ""
+authors = ["wararaki <ky7.ott.w@gmail.com>"]
+readme = "README.md"
+packages = [{include = "setup_scripts"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.scripts]
+main-batch = "setup_scripts:main"
+sub-batch = "setup_scripts:sub"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
