@@ -2,7 +2,7 @@ from pathlib import Path
 
 import typer
 
-from dumpers import ModelDumper
+from dumpers import ModelDumper, VectorizerDumper
 from estimator import SurviverClassifier
 from loaders import TitanicLoader
 from preprocessor import TitanicPreprocessor
@@ -31,16 +31,12 @@ def main(config_path: str = typer.Argument("batch/config.yml")):
 
     # TODO: evaluator
 
-    # TODO: dumper refactor
+    vectorizer_dumper = VectorizerDumper()
+    vectorizer_dumper.dump(titanic_vectorizer, config.vectorizer_path)
+    
     model_dumper = ModelDumper()
-    model_dumper.dump(
-        titanic_vectorizer._embarked_vectorizer._vectorizer,
-        config.vectorizer_path
-    )
-    model_dumper.dump(
-        classifier._model,
-        config.model_path
-    )
+    model_dumper.dump(classifier, config.model_path)
+
     print("save models.")
     print("DONE")
 
