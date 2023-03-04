@@ -1,5 +1,6 @@
 from pathlib import Path
 
+import uvicorn
 from fastapi import FastAPI
 
 from .predictor import SurvivePredictor
@@ -22,3 +23,11 @@ def ping() -> str:
 def predict(passenger: Passenger) -> Result:
     result = predictor.predict(passenger)
     return Result(survived=result)
+
+
+def main():
+    uvicorn.run("project_template.api.main:app", host="0.0.0.0", port=8080, reload=True)
+
+
+if __name__ == "__main__":
+    main()

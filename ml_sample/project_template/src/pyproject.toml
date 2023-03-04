@@ -17,6 +17,7 @@ pyyaml = "^6.0"
 pytest = "^5.2"
 
 [tool.poetry.scripts]
+api-runner = "project_template.api:main"
 batch-runner = "project_template.batch:main"
 
 [build-system]
