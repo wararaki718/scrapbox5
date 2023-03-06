@@ -18,7 +18,6 @@ def passengers() -> pd.DataFrame:
     return pd.DataFrame(data)
 
 
-
 def test_vectorize_passengers(vectorizer: TitanicVectorizer, passengers: pd.DataFrame):
     result = vectorizer.fit_transform(passengers)
     assert result.shape[0] == 2
