@@ -25,3 +25,9 @@ api
 ```shell
 docker-compose -f docker-compose.yml -f docker-compose.api.yml up
 ```
+
+## test
+
+```shell
+docker-compose -f docker-compose.yml -f docker-compose.test.yml up
+```
