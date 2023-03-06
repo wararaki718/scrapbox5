@@ -8,6 +8,7 @@ from .schema.config import BatchConfig
 from .vectorizer import TitanicVectorizer
 
 
+# TODO: use typer
 def main(config_path: str = "project_template/batch/config.yml"):
     config = BatchConfig.load(Path(config_path))
 
