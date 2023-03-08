@@ -1,6 +1,3 @@
-import pandas as pd
-
-
 class AgesCategorizer:
     def __init__(self) -> None:
         pass
