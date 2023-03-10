@@ -16,15 +16,16 @@ def predictor() -> Generator[SurvivePredictor, None, None]:
     config.estimator_config = MagicMock()
     config.estimator_config.model_path = Path("dummy")
 
-    embarked_vectorizer = MagicMock()
-    embarked_vectorizer.transform = MagicMock(return_value=np.array([[1]]))
+    vectorizer = MagicMock()
+    vectorizer.transform = MagicMock(return_value=np.array([[1, 1, 1, 1]]))
 
     model = MagicMock()
-    model.predict = MagicMock(return_value=np.array([1]))
+    model.estimate = MagicMock(return_value=np.array([1]))
 
-    with patch("project_template.api.vectorizer.components.embarked.joblib.load", return_value=embarked_vectorizer):
-        with patch("project_template.api.estimator.estimator.joblib.load", return_value=model):
+    with patch("project_template.api.predictor.PassengerVectorizer", return_value=vectorizer):
+        with patch("project_template.api.predictor.SurviveEstimator", return_value=model):
             yield SurvivePredictor(config)
+
 
 @pytest.fixture
 def passenger() -> MagicMock:
@@ -35,6 +36,6 @@ def passenger() -> MagicMock:
     return passenger
 
 
-# def test_predict(predictor: SurvivePredictor, passenger: MagicMock):
-#     result = predictor.predict(passenger)
-#     assert result == 1
+def test_predict(predictor: SurvivePredictor, passenger: MagicMock):
+    result = predictor.predict(passenger)
+    assert result == 1
