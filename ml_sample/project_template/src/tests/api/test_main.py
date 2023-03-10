@@ -8,18 +8,26 @@ from fastapi.testclient import TestClient
 
 @pytest.fixture
 def client() -> Generator[TestClient, None, None]:
-    model = MagicMock()
-    model.predict = MagicMock(return_value=np.array([[0]]))
-    vectorizer = MagicMock()
-    vectorizer.transform = MagicMock(return_value=np.array([0]))
-    with patch("project_template.api.estimator.estimator.joblib.load", return_value=model):
-        with patch("project_template.api.vectorizer.components.embarked.joblib.load", return_value=vectorizer):
-            ## TODO refactor
-            from project_template.api.main import app
-            yield TestClient(app)
+    predictor = MagicMock()
+    predictor.predict = MagicMock(return_value=np.array([[0]]))
+    with patch("project_template.api.predictor.SurvivePredictor", return_value=predictor):
+        ## TODO refactor
+        from project_template.api.main import app
+        yield TestClient(app)
 
 
 def test_ping(client: TestClient) -> None:
     response = client.get("/ping")
     assert response.status_code == 200
     assert response.json() == "pong"
+
+
+def test_predict(client: TestClient) -> None:
+    body = {
+        "Pclass": 1,
+        "Age": 10,
+        "Embarked": "C"
+    }
+    response = client.post("/predict", json=body)
+    assert response.status_code == 200
+    assert response.json()["survived"] == 0
