@@ -2,6 +2,8 @@ import gc
 import logging
 from pathlib import Path
 
+import typer
+
 from .dumpers import ModelDumper, VectorizerDumper
 from .estimator import SurviverClassifier
 from .loaders import TitanicLoader
@@ -14,8 +16,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s : %(levelname)s : %(
 logger = logging.getLogger(__name__)
 
 
-# TODO: use typer
-def main(config_path: str = "project_template/batch/config.yml"):
+def app(config_path: str = typer.Argument("project_template/batch/config.yml")):
     config = BatchConfig.load(Path(config_path))
 
     titanic_loader = TitanicLoader()
@@ -49,3 +50,7 @@ def main(config_path: str = "project_template/batch/config.yml"):
 
     logger.info("save models.")
     logger.info("DONE")
+
+
+def main():
+    typer.run(app)
