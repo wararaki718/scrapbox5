@@ -1,3 +1,4 @@
+import gc
 import logging
 from pathlib import Path
 
@@ -27,10 +28,15 @@ def main(config_path: str = "project_template/batch/config.yml"):
 
     titanic_vectorizer = TitanicVectorizer()
     x = titanic_vectorizer.fit_transform(df)
+    del df
+    gc.collect()
     logger.info(x.shape)
 
     classifier = SurviverClassifier()
     classifier.fit(x, y)
+    del x
+    del y
+    gc.collect()
     logger.info("model trained")
 
     # TODO: evaluator
