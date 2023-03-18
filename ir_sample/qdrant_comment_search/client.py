@@ -26,7 +26,9 @@ class SearchClient:
     def search(self, collection_name: str, query: SearchQuery) -> List[ScoredPoint]:
         response = self._client.search(
             collection_name=collection_name,
-            **query.to_dict()
+            **query.to_dict(),
+            with_vectors=True,
+            with_payload=True
         )
         return response
 

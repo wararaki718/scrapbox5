@@ -1,18 +1,18 @@
 from typing import List
 
-from qdrant_client.http.models import Filter, FieldCondition, MatchValue, SearchParams
+from qdrant_client.http.models import Filter, FieldCondition, MatchText, SearchParams
 
 from query import SearchQuery
 
 
 class QueryBuilder:
     @classmethod
-    def build(cls, key: str, value: str, vector: List[float], ef: int=128) -> SearchQuery:
+    def build(cls, key: str, text: str, vector: List[float], ef: int=128) -> SearchQuery:
         query_filter = Filter(
             must=[
                 FieldCondition(
                     key=key,
-                    match=MatchValue(value=value)
+                    match=MatchText(text=text)
                 )
             ]
         )

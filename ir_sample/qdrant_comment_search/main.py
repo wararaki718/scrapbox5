@@ -9,6 +9,7 @@ from config import ModelConfig
 from loader import BatchLoader
 from preprocessor import BatchPreprocessor
 from reader import SentenceReader
+from utils import show
 from vectorizer import BertVectorizer
 
 
@@ -36,10 +37,12 @@ def main():
         client.insert(collection_name, points)
         print(f"data inserted: {len(points.ids)}")
         sleep(1)
+        break
 
-    query = QueryBuilder.build(key="sentence", value="円", vector=vectors[0])
+    query = QueryBuilder.build(key="sentence", text="円", vector=vectors[0])
     response = client.search(collection_name, query)
-    print(response)
+    # print(response)
+    show(response)
     sleep(1)
 
     _ = client.delete_index(collection_name)
