@@ -1,0 +1,4 @@
+version: "3"
+services:
+  db:
+    command: "./qdrant --snapshot /qdrant/snapshots/sample/samplefile.snapshot:sample"
