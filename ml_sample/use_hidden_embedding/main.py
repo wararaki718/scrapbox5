@@ -1,7 +1,9 @@
 from pathlib import Path
 
 from loader import DataLoader
+from model import NNModel
 from preprocessor import TextPreprocessor
+from trainer import NNTrainer
 from vectorizer import TextVectorizer
 
 
@@ -22,7 +24,11 @@ def main():
     X = vectorizer.fit_transform(sentences)
     print(X.shape)
 
-    ## TODO: model definition
+    print("model training:")
+    model = NNModel(n_input=X.shape[1])
+    trainer = NNTrainer()
+    model = trainer.train(model, X, y)
+
     ## TODO: get embedding
 
     print("DONE")
