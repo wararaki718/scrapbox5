@@ -3,6 +3,7 @@ from pathlib import Path
 from loader import DataLoader
 from model import NNModel
 from preprocessor import TextPreprocessor
+from saver import EmbeddingSaver
 from trainer import NNTrainer
 from vectorizer import TextVectorizer
 
@@ -24,12 +25,15 @@ def main():
     X = vectorizer.fit_transform(sentences)
     print(X.shape)
 
-    print("model training:")
     model = NNModel(n_input=X.shape[1])
     trainer = NNTrainer()
     model = trainer.train(model, X, y)
+    print("model trained!")
 
-    ## TODO: get embedding
+    model_path = Path("model/model.pkl")
+    saver = EmbeddingSaver()
+    saver.save(model, model_path)
+    print("save a embedding.")
 
     print("DONE")
 
