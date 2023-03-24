@@ -1,0 +1,7 @@
+version: "3"
+services:
+  qdrant:
+    image: amazonlinux2-qdrant:v1.1.0
+    build: .
+    ports:
+      - 6333:6333
