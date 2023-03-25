@@ -1,9 +1,10 @@
 from pathlib import Path
 
-from logger import Logger
+from logger import CustomLogger
 
 
-logger = Logger.instance(Path("log_config.yml"))
+logger = CustomLogger.instance(__name__, Path("log_config.yml"))
+
 
 def main():
     logger.info("DONE")
