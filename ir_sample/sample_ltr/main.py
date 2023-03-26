@@ -1,3 +1,5 @@
+import gc
+
 from evaluator import LTREvaluator
 from loader import LTRLoader
 from model import MLPModel
@@ -14,18 +16,18 @@ def main():
     print(df.shape)
 
     preprocessor = LTRPreprocessor()
-    X, y, df = preprocessor.transform(df)
-    print(X.shape)
-    print(y.shape)
-    print(df.shape)
+    batch_iter = preprocessor.transform(df)
+    batch_iter.shape()
+    del df
+    gc.collect()
 
     epochs = 10
-    model = MLPModel(X.shape[1], 1, 16)
+    model = MLPModel(batch_iter.get_n_features(), 1, 16)
     trainer = LTRTrainer()
-    model = trainer.train(model, X, y, epochs=epochs)
+    model = trainer.train(model, batch_iter, epochs=epochs)
 
     evaluator = LTREvaluator()
-    score = evaluator.evaluate(model, X, y)
+    score = evaluator.evaluate(model, batch_iter)
     print(score)
 
     print("DONE")
