@@ -1,0 +1,24 @@
+version: '3'
+services:
+  py36:
+    build: ./app_py36
+    image: app-py36:latest
+    volumes:
+      - ./csvs:/csvs
+      - ./data:/data
+  py37:
+    build: ./app_py37
+    image: app-py37:latest
+    volumes:
+      - ./csvs:/csvs
+      - ./data:/data
+    depends_on:
+      - py36
+  py38:
+    build: ./app_py38
+    image: app-py38:latest
+    volumes:
+      - ./csvs:/csvs
+      - ./data:/data
+    depends_on:
+      - py37
