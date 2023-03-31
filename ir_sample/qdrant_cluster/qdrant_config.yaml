@@ -1,0 +1,16 @@
+cluster:
+  # Use `enabled: true` to run Qdrant in distributed deployment mode
+  enabled: true
+  # Configuration of the inter-cluster communication
+  p2p:
+    # Port for internal communication between peers
+    port: 6335
+
+  # Configuration related to distributed consensus algorithm
+  consensus:
+    # How frequently peers should ping each other.
+    # Setting this parameter to lower value will allow consensus
+    # to detect disconnected node earlier, but too frequent
+    # tick period may create significant network and CPU overhead.
+    # We encourage you NOT to change this parameter unless you know what you are doing.
+    tick_period_ms: 100

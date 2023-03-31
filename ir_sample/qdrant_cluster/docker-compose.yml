@@ -1,0 +1,41 @@
+version: "3"
+services:
+  master:
+    image: qdrant/qdrant:v1.0.3
+    ports:
+      - 6333:6333
+    command: "./qdrant --uri 'http://master:6335'"
+    volumes:
+      - ./qdrant_config.yaml:/qdrant/config/production.yaml
+    networks:
+      - qdrant_network
+  node1:
+    image: qdrant/qdrant:v1.0.3
+    command: "./qdrant --bootstrap 'http://master:6335'"
+    networks:
+      - qdrant_network
+    depends_on:
+      - master
+    volumes:
+      - ./qdrant_config.yaml:/qdrant/config/production.yaml
+  node2:
+    image: qdrant/qdrant:v1.0.3
+    command: "./qdrant --bootstrap 'http://master:6335'"
+    networks:
+      - qdrant_network
+    depends_on:
+      - node1
+    volumes:
+      - ./qdrant_config.yaml:/qdrant/config/production.yaml
+  node3:
+    image: qdrant/qdrant:v1.0.3
+    command: "./qdrant --bootstrap 'http://master:6335'"
+    networks:
+      - qdrant_network
+    depends_on:
+      - node2
+    volumes:
+      - ./qdrant_config.yaml:/qdrant/config/production.yaml
+
+networks:
+  qdrant_network:
