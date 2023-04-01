@@ -1,5 +1,11 @@
 # sharding
 
+## setup
+
+```shell
+pip install transformers
+```
+
 ## download
 
 ```shell

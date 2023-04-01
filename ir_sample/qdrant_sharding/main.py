@@ -15,7 +15,7 @@ logging.basicConfig(level=logging.INFO, format="[%(levelname)s] %(asctime)s %(mo
 logger = logging.getLogger(__name__)
 
 
-def main():
+def init_data():
     filepath = Path("data/Gift_Cards.json")
     loader = GiftCardLoader()
     cards = loader.load(filepath)
@@ -42,7 +42,12 @@ def main():
     dumppath = Path("data/vector_cards.ndjson")
     dumper.dump(vector_cards, dumppath)
     logger.info(f"save {dumppath}")
+    del vector_cards
+    gc.collect()
 
+
+def main():
+    init_data()
     logger.info("DONE")
 
 
