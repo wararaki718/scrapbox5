@@ -1,6 +1,6 @@
 from typing import List
 
-from card import GiftCard
+from .card import GiftCard
 
 
 class TextPreprocessor:

@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 from typing import List
 
-from card import GiftCardWithVector
+from .card import GiftCardWithVector
 
 
 class GiftCardDumper:

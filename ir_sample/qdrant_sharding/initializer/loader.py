@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 from typing import List
 
-from card import GiftCard
+from .card import GiftCard
 
 
 class GiftCardLoader:
@@ -15,4 +15,4 @@ class GiftCardLoader:
             for line in f:
                 card = json.loads(line)
                 cards.append(GiftCard(**card))
-        return cards#[:256]
+        return cards[:256]

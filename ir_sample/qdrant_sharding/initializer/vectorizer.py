@@ -3,8 +3,8 @@ from typing import List
 
 from transformers import AutoModel, AutoTokenizer
 
-from config import ModelConfig
-from utils import try_gpu
+from .config import ModelConfig
+from .utils import try_gpu
 
 
 class BertVectorizer:

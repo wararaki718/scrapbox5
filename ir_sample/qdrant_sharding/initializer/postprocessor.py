@@ -1,6 +1,6 @@
 from typing import List
 
-from card import GiftCard, GiftCardWithVector
+from .card import GiftCard, GiftCardWithVector
 
 
 class GiftPostprocessor:
