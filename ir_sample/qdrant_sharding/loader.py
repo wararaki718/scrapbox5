@@ -15,4 +15,4 @@ class GiftCardLoader:
             for line in f:
                 card = json.loads(line)
                 cards.append(GiftCard(**card))
-        return cards[:256]
+        return cards#[:256]
