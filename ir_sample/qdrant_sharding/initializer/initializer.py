@@ -37,6 +37,7 @@ class DataInitializer:
         iterator = TextIterator(texts)
         for chunk in iterator:
             vectors.extend(self._vectorizer.transform(chunk))
+            logger.info(f"vectorized: ({len(vectors)}, {len(vectors[0])})")
         logger.info(f"vectorized: ({len(vectors)}, {len(vectors[0])})") # dim=768
 
         vector_cards = self._postprocessor.transform(cards, vectors)
