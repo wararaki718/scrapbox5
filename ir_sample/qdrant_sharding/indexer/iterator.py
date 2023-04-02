@@ -1,4 +1,3 @@
-import uuid
 from typing import Generator, List
 
 from qdrant_client.http.models import Batch
@@ -15,14 +14,14 @@ class BatchIterator:
         ids = []
         payloads = []
         vectors = []
-        for card in self._cards:
+        for i, card in enumerate(self._cards, start=1):
             payload = card.dict()
             del payload["vector"]
 
-            ids.append(uuid.uuid4())
+            ids.append(i)
             vectors.append(card.vector)
             payloads.append(payload)
-            if len(ids) < self._batch_size:
+            if len(ids) == self._batch_size:
                 yield Batch(
                     ids=ids,
                     payloads=payloads,
