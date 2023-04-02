@@ -24,7 +24,7 @@ class DataInitializer:
 
     def initialize(self, filepath: Path, store_path: Path):
         if store_path.exists():
-            logger.info("{store_path} is already existed. skip initialization.")
+            logger.info(f"{store_path} is already existed. skip initialization.")
             return
 
         cards = self._loader.load(filepath)

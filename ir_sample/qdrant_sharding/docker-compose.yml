@@ -1,6 +1,9 @@
 version: "3"
 services:
-  db:
+  qdrant:
     image: qdrant/qdrant:v1.0.3
     ports:
       - 6333:6333
+    volumes:
+      - ./qdrant_config.yaml:/qdrant/config/production.yaml
+      - ./snapshots:/qdrant/snapshots

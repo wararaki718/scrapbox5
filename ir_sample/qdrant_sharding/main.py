@@ -1,6 +1,7 @@
 import logging
 from pathlib import Path
 
+from indexer import QdrantIndexer
 from initializer import DataInitializer
 
 
@@ -13,6 +14,10 @@ def main():
     filepath = Path("data/Gift_Cards.json")
     store_path = Path("data/vector_cards.ndjson")
     initializer.initialize(filepath, store_path)
+
+    indexer = QdrantIndexer()
+    collection_name = "reviews"
+    indexer.index(store_path, collection_name)
 
     logger.info("DONE")
 

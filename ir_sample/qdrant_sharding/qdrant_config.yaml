@@ -1,0 +1,2 @@
+storage:
+  snapshots_path: /qdrant/snapshots
