@@ -4,7 +4,7 @@ from qdrant_client.http.models import Batch, SnapshotDescription, UpdateResult, 
 
 class SearchClient:
     def __init__(self, host: str="localhost", port: int=6333):
-        self._client = QdrantClient(host=host, port=port, timeout=30)
+        self._client = QdrantClient(host=host, port=port, timeout=300)
 
     def create_index(self, collection_name: str, params: VectorParams) -> bool:
         self._client.recreate_collection(
