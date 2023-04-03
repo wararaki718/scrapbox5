@@ -6,10 +6,11 @@ class SearchClient:
     def __init__(self, host: str="localhost", port: int=6333):
         self._client = QdrantClient(host=host, port=port, timeout=300)
 
-    def create_index(self, collection_name: str, params: VectorParams) -> bool:
+    def create_index(self, collection_name: str, params: VectorParams, n_shards: int=8) -> bool:
         self._client.recreate_collection(
             collection_name=collection_name,
-            vectors_config=params
+            vectors_config=params,
+            shard_number=n_shards
         )
     
     def insert(self, collection_name: str, points: Batch) -> UpdateResult:

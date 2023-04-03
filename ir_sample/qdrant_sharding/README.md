@@ -19,5 +19,15 @@ gzip -d data/Gift_Cards.json.gz
 ## run
 
 ```shell
+docker-compose up
+```
+
+```shell
 python main.py
+```
+
+check
+
+```shell
+python test.py
 ```

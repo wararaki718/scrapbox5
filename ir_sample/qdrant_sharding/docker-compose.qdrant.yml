@@ -1,0 +1,10 @@
+version: "3"
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.0.3
+    ports:
+      - 6333:6333
+    volumes:
+      - ./qdrant_config.yaml:/qdrant/config/production.yaml
+      - ./snapshots:/qdrant/snapshots
+    command: "./qdrant --snapshot /qdrant/snapshots/reviews.snapshot:reviews"
