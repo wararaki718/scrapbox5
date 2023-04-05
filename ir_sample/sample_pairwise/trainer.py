@@ -26,7 +26,7 @@ class LTRTrainer:
                 optimizer.zero_grad()
                 y1_preds = model(X1_train)
                 y2_preds = model(X2_train)
-                loss = torch.margin_ranking_loss(y1_preds, y2_preds, y1_train - y2_train).sum()
+                loss = torch.margin_ranking_loss(y1_preds, y2_preds, (y1_train - y2_train).sign()).sum()
                 
                 loss.backward()
                 optimizer.step()
