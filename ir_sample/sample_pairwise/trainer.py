@@ -1,6 +1,7 @@
 import torch
 
 from batch import BatchIterator
+from loss import ranknet_loss
 from model import MLPModel
 from utils import try_gpu, random_pairs
 
@@ -26,13 +27,14 @@ class LTRTrainer:
                 optimizer.zero_grad()
                 y1_preds = model(X1_train)
                 y2_preds = model(X2_train)
-                loss = torch.margin_ranking_loss(y1_preds, y2_preds, (y1_train - y2_train).sign()).sum()
+                #loss = torch.margin_ranking_loss(y1_preds, y2_preds, (y1_train - y2_train).sign())
+                loss = ranknet_loss(y1_train, y2_train, y1_preds, y2_preds)
                 
                 loss.backward()
                 optimizer.step()
 
                 total_loss += loss.item()
-                if i % 100 == 0:
+                if i % 1000 == 0:
                     print(f"[epoch={epoch}, i={i}] loss: {loss}")
             
             print(f"total_loss={total_loss}")

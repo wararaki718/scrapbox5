@@ -10,7 +10,7 @@ class LTREvaluator:
     def __init__(self):
         pass
 
-    def evaluate(self, model: MLPModel, batch_iter: BatchIterator) -> float:
+    def evaluate(self, model: MLPModel, batch_iter: BatchIterator, k: int=10) -> float:
         scores = 0.0
         model.eval()
         for X, y, _ in batch_iter:
@@ -22,6 +22,6 @@ class LTREvaluator:
             scores += ndcg_score(
                 y_true.cpu().detach().numpy().reshape(1, -1),
                 y_preds.cpu().detach().numpy().reshape(1, -1),
-                k=10
+                k=k
             )
         return scores / len(batch_iter)
