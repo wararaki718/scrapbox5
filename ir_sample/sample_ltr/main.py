@@ -5,7 +5,7 @@ from loader import LTRLoader
 from model import MLPModel
 from preprocessor import LTRPreprocessor
 from trainer import LTRTrainer
-
+from utils import try_gpu
 
 def main():
     filename = "MQ2008/Fold1/train.txt"
@@ -16,18 +16,29 @@ def main():
     print(df.shape)
 
     preprocessor = LTRPreprocessor()
-    batch_iter = preprocessor.transform(df)
-    batch_iter.shape()
+    train_iter = preprocessor.transform(df)
+    train_iter.shape()
     del df
     gc.collect()
 
-    epochs = 10
-    model = MLPModel(batch_iter.get_n_features(), 1, 16)
+    # load valid
+    filename = "MQ2008/Fold1/vali.txt"
+    df = loader.load(filename)
+    valid_iter = preprocessor.transform(df)
+    valid_iter.shape()
+    del df
+    gc.collect()
+
+    epochs = 2000
+    model = try_gpu(MLPModel(train_iter.get_n_features(), 1, 16))
     trainer = LTRTrainer()
-    model = trainer.train(model, batch_iter, epochs=epochs)
+    model = trainer.train(model, train_iter, valid_iter, epochs=epochs)
 
     evaluator = LTREvaluator()
-    score = evaluator.evaluate(model, batch_iter)
+    filename = "MQ2008/Fold1/test.txt"
+    df = loader.load(filename)
+    test_iter = preprocessor.transform(df)
+    score = evaluator.evaluate(model, test_iter)
     print(score)
 
     print("DONE")
