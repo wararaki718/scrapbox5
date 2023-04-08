@@ -5,7 +5,7 @@ import torch.nn as nn
 
 
 class MLPModel(nn.Module):
-    def __init__(self, n_input: int, n_output: int, n_hidden: int = 32) -> None:
+    def __init__(self, n_input: int, n_output: int, n_hidden: int = 256) -> None:
         super().__init__()
         self.linear1 = nn.Linear(n_input, n_hidden)
         self.linear2 = nn.Linear(n_hidden, n_hidden)

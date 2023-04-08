@@ -22,7 +22,7 @@ def main():
     del df
     gc.collect()
 
-    epochs = 100
+    epochs = 2000
     model = try_gpu(MLPModel(batch_iter.get_n_features(), 1, 16))
     trainer = LTRTrainer()
     model = trainer.train(model, batch_iter, epochs=epochs)
