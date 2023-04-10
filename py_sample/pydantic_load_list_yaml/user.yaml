@@ -1,0 +1,7 @@
+config:
+  - uid: 1
+    name: test
+    age: 10
+  - uid: 2
+    name: sample
+    age: 20
