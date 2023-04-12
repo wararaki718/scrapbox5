@@ -1,0 +1,13 @@
+# grpc access
+
+## setup
+
+```shell
+pip install qdrant-client
+```
+
+## run
+
+```shell
+docker-compose up
+```
