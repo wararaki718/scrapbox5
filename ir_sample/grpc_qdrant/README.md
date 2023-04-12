@@ -11,3 +11,7 @@ pip install qdrant-client
 ```shell
 docker-compose up
 ```
+
+```shell
+python main.py
+```
