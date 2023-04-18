@@ -33,14 +33,15 @@ def main():
     points = get_data2()
     client.insert(collection_name2, points)
     print(f"data inserted: {len(points.ids)}")
+    print()
 
     query = QueryBuilder.build(key="color", value="red", vector=[0.3, 0.2, 0.1])
 
-    print(f"{collection_name1}:")
+    print(f"search collection ({collection_name1}):")
     response = client.search(collection_name1, query)
     show(response)
 
-    print(f"{collection_name2}:")
+    print(f"search collection ({collection_name2}):")
     response = client.search(collection_name2, query)
     show(response)
 
@@ -52,6 +53,7 @@ def main():
     print(aliases)
     print()
 
+    print(f"search alias ({alias_name}):")
     response = client.search(alias_name, query)
     show(response)
 
@@ -63,6 +65,7 @@ def main():
     print(aliases)
     print()
     
+    print(f"search alias ({alias_name}):")
     response = client.search(alias_name, query)
     show(response)
 
