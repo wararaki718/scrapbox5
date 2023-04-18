@@ -11,6 +11,11 @@ def main():
     collection_name2 = "test"
     client = SearchClient(host="localhost", grpc_port=6334)
 
+    aliases = client.get_aliases()
+    print("alias:")
+    print(aliases)
+    print()
+
     params = VectorParams(
         size=3,
         distance="Cosine"
@@ -42,11 +47,21 @@ def main():
     response = client.update_alias(collection_name1, alias_name)
     print("set alias")
 
+    aliases = client.get_aliases()
+    print("alias:")
+    print(aliases)
+    print()
+
     response = client.search(alias_name, query)
     show(response)
 
     response = client.switch_alias(collection_name2, alias_name)
     print("switch alias")
+
+    aliases = client.get_aliases()
+    print("alias:")
+    print(aliases)
+    print()
     
     response = client.search(alias_name, query)
     show(response)

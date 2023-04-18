@@ -1,7 +1,7 @@
-from typing import List
+from typing import List, Optional
 
 from qdrant_client import QdrantClient
-from qdrant_client.http.models import Batch, ScoredPoint, UpdateResult, VectorParams, CreateAliasOperation, CreateAlias, DeleteAlias, DeleteAliasOperation
+from qdrant_client.http.models import Batch, ScoredPoint, UpdateResult, VectorParams, CreateAliasOperation, CreateAlias, DeleteAlias, DeleteAliasOperation, AliasDescription, CollectionsAliasesResponse
 
 from query import SearchQuery
 
@@ -87,3 +87,9 @@ class SearchClient:
             ]
         )
         return response
+
+    def get_aliases(self) -> List[AliasDescription]:
+        response: Optional[CollectionsAliasesResponse] = self._client.get_aliases()
+        if response is None:
+            return list()
+        return response.aliases
