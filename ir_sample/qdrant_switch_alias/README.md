@@ -1,4 +1,4 @@
-# index update
+# switch alias
 
 ## setup
 
