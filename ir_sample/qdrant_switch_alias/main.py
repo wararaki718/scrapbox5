@@ -69,6 +69,11 @@ def main():
     response = client.search(alias_name, query)
     show(response)
 
+    print("get collections:")
+    names = client.get_index()
+    print(names)
+    print()
+
     _ = client.delete_index(collection_name1)
     print(f"'{collection_name1}' is deleted.")
 

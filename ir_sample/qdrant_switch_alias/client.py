@@ -1,7 +1,7 @@
 from typing import List, Optional
 
 from qdrant_client import QdrantClient
-from qdrant_client.http.models import Batch, ScoredPoint, UpdateResult, VectorParams, CreateAliasOperation, CreateAlias, DeleteAlias, DeleteAliasOperation, AliasDescription, CollectionsAliasesResponse
+from qdrant_client.http.models import Batch, ScoredPoint, UpdateResult, VectorParams, CreateAliasOperation, CreateAlias, DeleteAlias, DeleteAliasOperation, AliasDescription, CollectionsAliasesResponse, CollectionDescription
 
 from query import SearchQuery
 
@@ -21,6 +21,11 @@ class SearchClient:
             vectors_config=params
         )
         return response
+    
+    def get_index(self) -> List[str]:
+        response = self._client.get_collections()
+        names = [collection.name for collection in response.collections]
+        return names
 
     def insert(self, collection_name: str, points: Batch) -> UpdateResult:
         response = self._client.upsert(
