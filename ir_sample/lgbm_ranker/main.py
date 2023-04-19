@@ -1,6 +1,8 @@
-from pytorchltr.datasets import Example3
+import gc
 
-from evaluate import Evaluator
+from pytorchltr.datasets import MSLR10K
+
+# from evaluate import Evaluator
 from lightgbm import LGBMRanker
 # from model import NNModel
 # from train import Trainer
@@ -8,10 +10,10 @@ from lightgbm import LGBMRanker
 from utils import create_dataset
 
 def main():
-    train = Example3(split="train")
-    test = Example3(split="test")
+    train = MSLR10K(split="train")
+    test = MSLR10K(split="test")
 
-    print(train.collate_fn())
+    # print(train.collate_fn())
 
     # model = NNModel(train[0].features.shape[1], 1)
     # model = LGBMRanker()
@@ -20,12 +22,15 @@ def main():
 
     X_train, y_train, group = create_dataset(train)
     print()
-
-    test_dataset = create_dataset(test)
+    
 
     model = LGBMRanker()
     model.fit(X_train, y_train, group=group)
+    del X_train, y_train, group
+    gc.collect()
 
+    print("test")
+    X_test, y_test, group = create_dataset(test)
 
     # evaluator = Evaluator()
     # score = evaluator.evaluate(model, test)
