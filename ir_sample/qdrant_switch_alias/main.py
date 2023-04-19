@@ -11,6 +11,12 @@ def main():
     collection_name2 = "test"
     client = SearchClient(host="localhost", grpc_port=6334)
 
+    print("delete empty:")
+    response = client.delete_alias(alias_name)
+    print(response)
+    print()
+    
+
     aliases = client.get_aliases()
     print("alias:")
     print(aliases)
