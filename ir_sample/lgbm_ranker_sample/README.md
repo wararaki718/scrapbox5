@@ -3,7 +3,7 @@
 ## setup
 
 ```shell
-pip install lightgbm
+pip install lightgbm scipy pandas scikit-learn
 ```
 
 ## download
