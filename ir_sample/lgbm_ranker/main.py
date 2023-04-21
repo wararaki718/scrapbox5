@@ -11,25 +11,23 @@ from utils import create_dataset
 
 def main():
     train = MSLR10K(split="train")
-    test = MSLR10K(split="test")
-
-    # print(train.collate_fn())
-
-    # model = NNModel(train[0].features.shape[1], 1)
-    # model = LGBMRanker()
-    # trainer = Trainer()
-    # model = trainer.train(model, train)
-
-    X_train, y_train, group = create_dataset(train)
-    print()
+    X_train, y_train, group = create_dataset(train, n_sample=5)
+    del train
+    gc.collect()
     
+    print(X_train)
+    print()
+    print(y_train)
+    print()
+    print(group)
 
-    model = LGBMRanker()
-    model.fit(X_train, y_train, group=group)
+    model = LGBMRanker(n_estimators=50, boosting_type="gbdt", num_leaves=41, learning_rate=0.01, n_jobs=-1, random_state=42)
+    model.fit(X_train, y_train, group=group, verbose=True)
     del X_train, y_train, group
     gc.collect()
 
     print("test")
+    test = MSLR10K(split="test")
     X_test, y_test, group = create_dataset(test)
 
     # evaluator = Evaluator()
