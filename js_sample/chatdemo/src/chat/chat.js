@@ -7,31 +7,31 @@ const Chat = () => {
     const [messages, setMessages] = useState([]);
 
     websocket.onmessage = (event) => {
-        setMessages([...messages, event.data]);
-        event.preventDefault();
+        setMessages(messages => [...messages, event.data]);
     };
 
     const handleChangeMessage = (event) => {
         setMessage(event.target.value);
-        event.preventDefault();
     };
 
     const sendMessage = (event) => {
-        websocket.send(message);
-        setMessage("");
+        if (message.length > 0) {
+            websocket.send(message);
+            setMessage("");
+        }
         event.preventDefault();
     };
 
     return (
         <div>
             Chat
-            <form action="" onSubmit={sendMessage}>
-                <input type="text" autocomplete="off" value={message} onChange={handleChangeMessage} />
-                <button>send</button>
+            <form>
+                <input type="text" autoComplete="off" value={message} onChange={handleChangeMessage} />
+                <button onClick={sendMessage}>send</button>
             </form>
             
             <ul>
-                { messages.map(msg => (<li key={Date.now()}>{msg}</li>)) }
+                { messages.map(msg => (<li key={messages.length}>{msg}</li>)) }
             </ul>
         </div>
     );
