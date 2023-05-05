@@ -1,11 +1,10 @@
 FROM amazonlinux:2
 
 RUN yum update -y
-RUN yum install yum-utils -y
+RUN yum install yum-utils tar gzip wget make gcc openssl-devel bzip2-devel libffi-devel gcc-c++ -y
 
 # python
 WORKDIR /opt
-RUN yum install tar gzip wget make gcc openssl-devel bzip2-devel libffi-devel -y
 RUN wget https://www.python.org/ftp/python/3.9.16/Python-3.9.16.tgz
 RUN tar xzf Python-3.9.16.tgz
 
@@ -21,9 +20,6 @@ RUN yum install intel-mkl-2020.0-088 -y
 
 WORKDIR /
 COPY ./.numpy-site.cfg ~/.numpy-site.cfg
-RUN pip3.9 install wheel
-
-RUN yum install gcc-c++ -y
 RUN pip3.9 install --no-binary :all: numpy
 
 COPY ./main.py /app/main.py
