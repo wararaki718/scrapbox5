@@ -19,8 +19,8 @@ RUN rpm --import https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW
 RUN yum install intel-mkl-2020.0-088 -y
 
 # numpy
-WORKDIR /
-COPY ./.numpy-site.cfg ~/.numpy-site.cfg
+WORKDIR /root
+COPY ./.numpy-site.cfg /root/.numpy-site.cfg
 RUN pip3.9 install --no-binary :all: numpy
 
 COPY ./main.py /app/main.py
