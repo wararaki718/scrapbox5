@@ -33,7 +33,7 @@ def main():
 
     # dense
     print("dense:")
-    encoder = TctColBertQueryEncoder("castorini/tct_colbert-msmacro")
+    encoder = TctColBertQueryEncoder("castorini/tct_colbert-msmarco")
     dsearcher = FaissSearcher.from_prebuilt_index(
         "msmarco-passage-tct_colbert-hnsw",
         encoder
