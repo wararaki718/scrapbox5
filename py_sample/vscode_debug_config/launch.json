@@ -1,0 +1,38 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: poetry",
+            "type": "python",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/py_sample/vscode_debug_config",
+            "module": "poetry",
+            "args": [
+                "run",
+                "python",
+                "sample/main.py"
+            ],
+            "justMyCode": false
+        },
+        {
+            "name": "Python: FastAPI cwd",
+            "type": "python",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/py_sample/vscode_debug_config",
+            "module": "uvicorn",
+            "args": [
+                "server.main:app"
+            ],
+            "jinja": true,
+            "justMyCode": true
+        },
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}
