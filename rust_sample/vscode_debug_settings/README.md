@@ -1,5 +1,9 @@
-# launch.json
+# debug
 
-copy launch.json to .vscode/launch.json
+open ./sample directory on your vscode and execute debug run.
 
-## h
+## run
+
+```shell
+cargo run
+```
