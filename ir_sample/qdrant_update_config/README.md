@@ -1,4 +1,4 @@
-# qdrant search
+# qdrant update config
 
 ## setup
 
