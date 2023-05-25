@@ -20,6 +20,8 @@ def main():
         top_p=0.95,
         num_return_sequences=5
     )
+    print(type(outputs))
+    print(outputs)
 
     print("Text:")
     print(text)
