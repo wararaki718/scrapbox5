@@ -11,6 +11,7 @@ class Request(BaseModel):
     name: str = ""
     age: int = 0
     location: Optional[str] = None
+    keyword: Optional[str] = "test"
 
 
 class Response(BaseModel):
@@ -24,5 +25,5 @@ def ping() -> str:
 
 @app.post("/greeting", response_model=Response)
 def greeting(request: Request) -> Response:
-    message = f"{request.name}: {request.age}: {request.location}"
+    message = f"{request.name}: {request.age}: {request.location}: {request.keyword}"
     return Response(message=message)
