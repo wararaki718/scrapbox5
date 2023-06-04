@@ -12,7 +12,7 @@ class SentenceReader:
         pass
 
     def read(self, filepath: Path) -> List[Sentence]:
-        categories = "ABCDEFGHIJKL"
+        categories = "ABCD"
         df = pd.read_csv(filepath, sep="\t")
         return [
             Sentence(

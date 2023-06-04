@@ -1,6 +1,6 @@
 from typing import List
 
-from qdrant_client.http.models import Filter, FieldCondition, MatchText, SearchParams, MatchValue, Range
+from qdrant_client.http.models import Filter, SearchParams
 
 from .components import CategoryFilter, CounterfactualFilter, PriceFilter, SentenceFilter
 from schema.condition import Condition

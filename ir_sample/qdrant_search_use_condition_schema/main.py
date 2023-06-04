@@ -48,7 +48,7 @@ def main():
     client.create_payload_index(collection_name, field_name, params)
 
     condition = Condition(
-        key="is",
+        key="is the",
         category="A",
         price_lower=1000,
         price_upper=4000,
@@ -57,6 +57,8 @@ def main():
     query = QueryBuilder.build(condition, vector=vectors[0])
     response = client.search(collection_name, query)
     print(condition)
+    # print(query)
+    print()
     show(response)
 
     _ = client.delete_index(collection_name)

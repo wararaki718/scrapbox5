@@ -9,8 +9,10 @@ def show(results: List[ScoredPoint]) -> None:
             continue
 
         print("----")
-        print(result.id)
+        # print(result.id)
         print(result.payload["sentence_id"])
         print(result.payload["sentence"])
+        print(result.payload["category"])
+        print(result.payload["price"])
         print(result.score)
     print()

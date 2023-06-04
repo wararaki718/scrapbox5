@@ -10,6 +10,6 @@ class CategoryFilter:
             return None
         
         return FieldCondition(
-            key=category,
+            key="category",
             match=MatchValue(value=category)
         )
