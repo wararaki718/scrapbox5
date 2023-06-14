@@ -1,0 +1,13 @@
+{
+    "mappings": {
+        "properties": {
+            "topics": {
+                "type": "rank_features"
+            },
+            "negative_reviews": {
+                "type": "rank_features",
+                "positive_score_impact": false
+            }
+        }
+    }
+}
