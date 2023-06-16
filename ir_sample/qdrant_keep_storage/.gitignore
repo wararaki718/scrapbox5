@@ -1,0 +1,4 @@
+storage/aliases
+storage/collections
+storage/raft_state
+storage/.deleted
