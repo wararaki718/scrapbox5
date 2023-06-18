@@ -37,7 +37,11 @@ class AttentionDecoder(nn.Module):
         self.out = nn.Linear(n_hidden, n_output)
         self.dropout = nn.Dropout(dropout_p)
 
-    def forward(self, encoder_outputs: torch.Tensor, encoder_hidden: torch.Tensor, target_tensor: Optional[torch.Tensor]=None):
+    def forward(self,
+                encoder_outputs: torch.Tensor,
+                encoder_hidden: torch.Tensor,
+                target_tensor: Optional[torch.Tensor]=None
+    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
         batch_size = encoder_outputs.size(0)
         decoder_input = torch.empty(batch_size, 1, dtype=torch.long).fill_(TOKEN.SOS)
         decoder_input = try_gpu(decoder_input)

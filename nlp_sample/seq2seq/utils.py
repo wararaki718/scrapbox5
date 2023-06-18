@@ -3,7 +3,7 @@ from typing import Union
 import torch
 
 
-def try_gpu(x: Union[torch.Tensor, torch.Module]) -> Union[torch.Tensor, torch.Module]:
+def try_gpu(x: Union[torch.Tensor, torch.nn.Module]) -> Union[torch.Tensor, torch.nn.Module]:
     if torch.cuda.is_available():
         return x.cuda()
     else:

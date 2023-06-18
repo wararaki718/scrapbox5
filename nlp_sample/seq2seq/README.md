@@ -9,7 +9,8 @@ pip install torch
 ## download
 
 ```shell
-wget https://www.manythings.org/anki/jpn-eng.zip
+wget https://download.pytorch.org/tutorial/data.zip
+unzip data.zip
 ```
 
 ## run

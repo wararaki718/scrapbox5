@@ -1,5 +1,6 @@
 from typing import List
 
+from schema.pair import Pair
 
 MAX_LENGTH = 10
 
@@ -23,10 +24,10 @@ class PairFilter:
     def __init__(self) -> None:
         pass
 
-    def filter(self, pairs: List[List[str]]) -> List[List[str]]:
+    def filter(self, pairs: List[Pair]) -> List[Pair]:
         filtered_pairs = []
         for pair in pairs:
-            if len(pair[0].split(" ")) < MAX_LENGTH and len(pair[1].split(" ")) < MAX_LENGTH and pair[0].startswith(ENG_PREFIXES):
+            if len(pair.input_.split(" ")) < MAX_LENGTH and len(pair.target.split(" ")) < MAX_LENGTH and pair.target.startswith(ENG_PREFIXES):
                 filtered_pairs.append(pair)
         
         return filtered_pairs
