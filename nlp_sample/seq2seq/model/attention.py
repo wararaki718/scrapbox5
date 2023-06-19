@@ -73,7 +73,7 @@ class AttentionDecoder(nn.Module):
                      x_input: torch.Tensor,
                      x_hidden: torch.Tensor,
                      encoder_outputs: torch.Tensor
-    ) -> Tuple[torch.Tensor, torch.Tensor]:
+    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
         embedded =  self.dropout(self.embedding(x_input))
 
         query = x_hidden.permute(1, 0, 2)
