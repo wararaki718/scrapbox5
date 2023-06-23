@@ -10,7 +10,7 @@ class CustomKey:
         return hash((self.name, self.value))
     
     def __eq__(self, other: "CustomKey") -> bool:
-        if not isinstance(other.key, self.__class__):
+        if not isinstance(other, self.__class__):
             return NotImplemented
         return self.name == other.name and self.value == other.value
 
