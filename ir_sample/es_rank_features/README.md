@@ -1,9 +1,9 @@
-# Elasticsearch & MS MARCO
+# Rank Features
 
 ## setup
 
 ```bash
-pip install datasets==2.12.0 elasticsearch==8.8.0
+pip install elasticsearch==8.8.0
 ```
 
 ## run
