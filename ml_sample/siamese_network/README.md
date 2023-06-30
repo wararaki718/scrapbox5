@@ -3,7 +3,7 @@
 ## setup
 
 ```shell
-pip install torch
+pip install numpy torch torchvision
 ```
 
 ## run

@@ -1,43 +1,43 @@
+from typing import Tuple
+
 import torch
 import torch.nn as nn
-import torchvision
 
 
 class SiameseNetwork(nn.Module):
     def __init__(self) -> None:
         super(SiameseNetwork, self).__init__()
 
-        self.resnet = torchvision.models.resnet18(weights=None)
-
-        self.resnet.conv1 = nn.Conv2d(1, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
-        self.fc_in_features = self.resnet.fc.in_features
-
-        self.resnet = nn.Sequential(*(list(self.resnet.children())[:-1]))
-
-        self.fc = nn.Sequential(
-            nn.Linear(self.fc_in_features * 2, 256),
+        self.cnn1 = nn.Sequential(
+            nn.Conv2d(1, 96, kernel_size=11, stride=4),
             nn.ReLU(inplace=True),
-            nn.Linear(256, 1)
+            nn.MaxPool2d(3, stride=2),
+            
+            nn.Conv2d(96, 256, kernel_size=5, stride=1),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(2, stride=2),
+
+            nn.Conv2d(256, 384, kernel_size=3, stride=1),
+            nn.ReLU(inplace=True)
         )
 
-        self.sigmoid = nn.Sigmoid()
-    
-    def _init_weights(self, m: nn.Module) -> None:
-        if isinstance(m, nn.Linear):
-            nn.init.xavier_uniform_(m.weight)
-            m.bias.data.fill_(0.01)
+        self.fc1 = nn.Sequential(
+            nn.Linear(384, 1024),
+            nn.ReLU(inplace=True),
+
+            nn.Linear(1024, 256),
+            nn.ReLU(inplace=True),
+
+            nn.Linear(256, 2)
+        )
 
     def forward_once(self, x: torch.Tensor) -> torch.Tensor:
-        output = self.resnet(x)
+        output: torch.Tensor = self.cnn1(x)
         output = output.view(output.size()[0], -1)
+        output = self.fc1(output)
         return output
 
-    def forward(self, x1: torch.Tensor, x2: torch.Tensor) -> torch.Tensor:
-        x1 = self.forward_once(x1)
-        x2 = self.forward_once(x2)
-
-        x = torch.cat((x1, x2), 1)
-        x = self.fc(x)
-        x = self.sigmoid(x)
-
-        return x
+    def forward(self, x1: torch.Tensor, x2: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
+        output1 = self.forward_once(x1)
+        output2 = self.forward_once(x2)
+        return output1, output2
