@@ -28,12 +28,16 @@ def main() -> None:
     tfidf_vectorizer.fit(texts)
 
     names = count_vectorizer.get_feature_names_out()
+    vectors = count_vectorizer.transform(texts)
     print(names)
+    print(vectors)
 
     names = tfidf_vectorizer.get_feature_names_out()
-    print(names)
+    vectors = tfidf_vectorizer.transform(texts)
     idf = tfidf_vectorizer.idf_
+    print(names)
     print(idf)
+    print(vectors)
 
     print("DONE")
 
