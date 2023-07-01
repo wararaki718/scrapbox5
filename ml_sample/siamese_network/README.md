@@ -12,6 +12,11 @@ pip install numpy torch torchvision
 wget https://github.com/maticvl/dataHacker/raw/master/DATA/at%26t.zip
 ```
 
+```shell
+unzip at\&t.zip
+rm at\&t.zip
+```
+
 ## run
 
 ```shell

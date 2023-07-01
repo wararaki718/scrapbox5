@@ -1,7 +1,12 @@
+import logging
+
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
 
 from model import SiameseNetwork
+
+
+logger = logging.getLogger(__name__)
 
 
 class Tester:
@@ -22,4 +27,4 @@ class Tester:
             output1, output2 = model(img0, img1)
 
             distance = F.pairwise_distance(output1, output2)
-            print(f"distance: {distance}, label: {label}")
+            logger.info(f"distance: {distance}, label: {label}")

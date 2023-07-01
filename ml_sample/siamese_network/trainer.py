@@ -1,8 +1,13 @@
+import logging
+
 from torch.optim.optimizer import Optimizer
 from torch.utils.data import DataLoader
 
 from criterion import ContrasiveLoss
 from model import SiameseNetwork
+
+
+logger = logging.getLogger(__name__)
 
 
 class Trainer:
@@ -33,5 +38,5 @@ class Trainer:
                 optimizer.step()
 
                 if i % 10 == 0 :
-                    print(f"Epoch number {epoch}\n Current loss {loss.item()}\n")
+                    logger.info(f"Epoch number {epoch}\n Current loss {loss.item()}\n")
                     n_iteration += 10
