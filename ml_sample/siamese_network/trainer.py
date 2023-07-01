@@ -38,5 +38,5 @@ class Trainer:
                 optimizer.step()
 
                 if i % 10 == 0 :
-                    logger.info(f"Epoch number {epoch}\n Current loss {loss.item()}\n")
+                    logger.info(f"Epoch number {epoch}: Current loss {loss.item()}")
                     n_iteration += 10

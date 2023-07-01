@@ -1,5 +1,6 @@
 import logging
 
+import torch
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
 
@@ -22,9 +23,9 @@ class Tester:
         for (img0, img1, label) in loader:
             img0 = img0.cuda()
             img1 = img1.cuda()
-            label = label.cuda()
+            label: torch.Tensor = label.cuda()
             
             output1, output2 = model(img0, img1)
 
             distance = F.pairwise_distance(output1, output2)
-            logger.info(f"distance: {distance}, label: {label}")
+            logger.info(f"distance: {distance.item()}, label: {label.item()}")

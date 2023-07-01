@@ -34,8 +34,8 @@ def main() -> None:
     siamese_trainer.train(model, train_loader, criterion, optimizer)
     logger.info("finish train")
 
-    images = datasets.ImageFolder(rott="./data/faces/testing/")
-    siamese_dataset = SiameseNetworkDataset(imageFolderDataset=images, transform=transformer)
+    images = datasets.ImageFolder(root="./data/faces/testing/")
+    siamese_dataset = SiameseNetworkDataset(images, transformer)
     test_loader = DataLoader(siamese_dataset, num_workers=2, batch_size=1, shuffle=True)
     logger.info("set test images")
 
