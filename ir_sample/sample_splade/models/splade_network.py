@@ -6,14 +6,14 @@ import torch.nn as nn
 from .siamese import SiameseNetwork
 
 
-class Splade(nn.Module):
+class SpladeModel(nn.Module):
     def __init__(
             self,
             query_transformer: nn.Module,
             document_transformer: nn.Module,
             match_type: str="dot_product",
             agg_type: str="max") -> None:
-        super(Splade).__init__()
+        super(SpladeModel).__init__()
         self._query_model = SiameseNetwork(query_transformer, match_type, agg_type)
         self._document_model = SiameseNetwork(document_transformer, match_type, agg_type)
 

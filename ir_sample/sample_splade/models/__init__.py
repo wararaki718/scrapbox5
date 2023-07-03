@@ -1,10 +1,12 @@
-from .siamese import SiameseNetwork
-from .transformer import TransformerFactory
 from .custom_tokenizer import CustomTokenizer
+from .siamese import SiameseNetwork
+from .splade_network import SpladeModel
+from .transformer import TransformerFactory
 
 
 __all__ = [
-    "SiameseNetwork",
-    "TransformerFactory",
     "CustomTokenizer",
+    "SiameseNetwork",
+    "SpladeModel",
+    "TransformerFactory",
 ]

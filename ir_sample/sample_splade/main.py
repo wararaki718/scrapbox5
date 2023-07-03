@@ -1,4 +1,4 @@
-from models import SiameseNetwork, TransformerFactory, CustomTokenizer
+from models import CustomTokenizer, SiameseNetwork, SpladeModel, TransformerFactory
 
 
 def main() -> None:
@@ -9,6 +9,7 @@ def main() -> None:
     query_transformer = TransformerFactory.create(output_type, model_name)
 
     model = SiameseNetwork(query_transformer)
+    splade = SpladeModel(query_transformer, document_transformer)
     print("DONE")
 
 
