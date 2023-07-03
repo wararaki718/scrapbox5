@@ -1,6 +1,8 @@
+from functools import partial
+
 import torch
 import torch.nn as nn
-from transformers import AutoTokenizer, AutoModelForMaskedLM, AutoModel
+from transformers import AutoModelForMaskedLM, AutoModel
 
 
 class TransformerFactory:
@@ -22,10 +24,9 @@ class CLSTransformer(nn.Module):
     def __init__(self, model_name: str, fp16: bool=False) -> None:
         super().__init__()
         self._model = AutoModel(model_name)
-        self._tokenizer = AutoTokenizer.from_pretrained(model_name)
         self._fp16 = fp16
     
-    def forward(self, **tokens) -> torch.Tensor:
+    def forward(self, tokens: dict) -> torch.Tensor:
         with torch.cuda.amp.autocast():
             hiddens = self._model(**tokens)[0]
         out = hiddens[:, 0, :]
@@ -36,10 +37,9 @@ class HiddenStatesTransformer(nn.Module):
     def __init__(self, model_name: str, fp16: bool=False) -> None:
         super().__init__()
         self._model = AutoModel(model_name)
-        self._tokenizer = AutoTokenizer.from_pretrained(model_name)
         self._fp16 = fp16
     
-    def forward(self, **tokens) -> tuple:
+    def forward(self, tokens: dict) -> tuple:
         with torch.cuda.amp.autocast():
             hiddens = self._model(**tokens)[0]
         return hiddens, tokens["attention_mask"]
@@ -49,10 +49,9 @@ class MeanTransformer(nn.Module):
     def __init__(self, model_name: str, fp16: bool=False) -> None:
         super().__init__()
         self._model = AutoModel(model_name)
-        self._tokenizer = AutoTokenizer.from_pretrained(model_name)
         self._fp16 = fp16
     
-    def forward(self, **tokens) -> torch.Tensor:
+    def forward(self, tokens: dict) -> torch.Tensor:
         with torch.cuda.amp.autocast():
             hiddens = self._model(**tokens)[0]
         out = torch.sum(
@@ -66,10 +65,9 @@ class MLMTransformer(nn.Module):
     def __init__(self, model_name: str, fp16: bool=False) -> None:
         super().__init__()
         self._model = AutoModelForMaskedLM.from_pretrained(model_name)
-        self._tokenizer = AutoTokenizer.from_pretrained(model_name)
         self._fp16 = fp16
     
-    def forward(self, **tokens) -> torch.Tensor:
+    def forward(self, tokens: dict) -> torch.Tensor:
         with torch.cuda.amp.autocast():
             out = self._model(**tokens)
         return out
