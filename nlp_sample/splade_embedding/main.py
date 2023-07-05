@@ -15,14 +15,18 @@ def main() -> None:
     with torch.no_grad():
         tokens = tokenizer([text], padding=True, truncation=True, return_tensors="pt", max_length=500)
         document_embedding = model(d_kwargs=tokens)
+        rows, columns = torch.nonzero(document_embedding["d_rep"], as_tuple=True)
         print(document_embedding.keys())
         print(document_embedding["d_rep"].shape)
         print(document_embedding["d_rep"].squeeze().shape)
+        print(document_embedding["d_rep"][rows, columns].shape)
+        print()
 
         query_embedding = model(q_kwargs=tokens)
         print(query_embedding.keys())
         print(query_embedding["q_rep"].shape)
         print(query_embedding["q_rep"].squeeze().shape) # the dimension is the number of vocabs
+
 
     print("DONE")
 
