@@ -14,9 +14,13 @@ launch servers
 python -m http.server 8080
 ```
 
+check connection
+
 ```shell
 curl -v localhost:8080 localhost:8080 -H 'Connection:Keep-Alive'
 ```
+
+run
 
 ```shell
 python main.py
