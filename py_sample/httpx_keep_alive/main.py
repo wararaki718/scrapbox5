@@ -9,17 +9,21 @@ def show(headers: httpx.Headers) -> None:
 
 def main() -> None:
     url = "http://localhost:8080"
-    with httpx.Client(headers={"Connection": "close"}) as client:
-        response: httpx.Response = client.get(url)
-        print(response.status_code)
-        print("keep_alive=False:")
-        show(response.headers)
-    
+
+    print("# use client")
+    print("[keep_alive=True]:")
     with httpx.Client() as client:
         response: httpx.Response = client.get(url)
         print(response.status_code)
-        print("keep_alive=True:")
         show(response.headers)
+
+    print("[keep_alive=False]:")
+    with httpx.Client(headers={"Connection": "close"}) as client:
+        response: httpx.Response = client.get(url)
+        print(response.status_code)
+        show(response.headers)
+    print()
+
     print("DONE")
 
 
