@@ -8,20 +8,14 @@ def show(headers: httpx.Headers) -> None:
 
 
 def main() -> None:
-    url = "http://localhost:80"
-    limits = httpx.Limits(
-        max_keepalive_connections=0,
-        max_connections=None,
-        keepalive_expiry=None
-    )
-    with httpx.Client() as client:
+    url = "http://localhost:8080"
+    with httpx.Client(headers={"Connection": "close"}) as client:
         response: httpx.Response = client.get(url)
         print(response.status_code)
         print("keep_alive=False:")
         show(response.headers)
     
-    limits = httpx.Limits(max_keepalive_connections=5, max_connections=10)
-    with httpx.Client(limits=limits) as client:
+    with httpx.Client() as client:
         response: httpx.Response = client.get(url)
         print(response.status_code)
         print("keep_alive=True:")
