@@ -16,13 +16,21 @@ def main() -> None:
         response: httpx.Response = client.get(url)
         print(response.status_code)
         show(response.headers)
+        request = client.build_request("GET", url)
+        print(request.headers)
+    print()
 
     print("[keep_alive=False]:")
     with httpx.Client(headers={"Connection": "close"}) as client:
         response: httpx.Response = client.get(url)
         print(response.status_code)
         show(response.headers)
+        request = client.build_request("GET", url)
+        print(request.headers)
     print()
+
+    request = httpx.Request("GET", url)
+    print(request.headers)
 
     print("DONE")
 
