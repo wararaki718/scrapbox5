@@ -1,0 +1,7 @@
+version: "3"
+services:
+  front:
+    build: .
+    image: frontapp:latest
+    ports:
+      - 8080:8080
