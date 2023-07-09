@@ -3,5 +3,6 @@ services:
   back:
     build: .
     image: backapp:latest
+    privileged: true
     ports:
       - 3000:3000

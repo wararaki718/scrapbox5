@@ -11,3 +11,7 @@ docker-compose build
 ```shell
 docker-compose up
 ```
+
+```shell
+curl http://localhost:8080
+```
