@@ -1,0 +1,6 @@
+predictor_config:
+  survive_predictor_config:
+    estimator_config:
+      model_path: ./project_template/model/model.pkl
+    vectorizer_config:
+      vectorizer_path: ./project_template/model/vectorizer.pkl
