@@ -38,6 +38,7 @@ def main() -> None:
     sparse_dict_tokens = {
         idx2token[index]: round(weight, 2) for index, weight in zip(columns, weights)
     }
+    # create index2docid
     print(sparse_dict_tokens)
     print()
 
@@ -61,6 +62,8 @@ def main() -> None:
     print(vectors.shape)
     print()
 
+    # retrieval function
+    # get features from search_index
     similarity = np.zeros((vectors.shape[0], vectors.shape[0]))
     for i, vector in enumerate(vectors):
         similarity[i,:] = np.dot(vector, vectors.T) / (np.linalg.norm(vector) * np.linalg.norm(vectors, axis=1))
