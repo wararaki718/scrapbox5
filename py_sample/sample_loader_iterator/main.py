@@ -10,16 +10,24 @@ class CustomFilter:
         return len(text) % 2 == 1
 
 
+class CustomNormalizer:
+    def normalize(self, text: str) -> bool:
+        text = text.lower()
+        text = text.replace(" ", "_")
+        return text
+
+
 class CustomIterator:
     def __init__(self, data_directory: Path) -> None:
         self._data_directory = data_directory
         self._custom_filter = CustomFilter()
+        self._custom_normalizer = CustomNormalizer()
     
     def __iter__(self) -> Generator[str, None, None]:
         for filepath in self._data_directory.iterdir():
             df = pd.read_csv(filepath)
             for token in filter(self._custom_filter, df.token):
-                yield token
+                yield self._custom_normalizer.normalize(token)
 
 
 def main() -> None:
