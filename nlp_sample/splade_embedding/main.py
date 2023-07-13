@@ -6,6 +6,10 @@ import torch
 from splade.models.transformer_rep import Splade
 from transformers import AutoTokenizer
 
+from builder import IndexBuilder
+from retriever import IndexRetriever
+from vectorizers import DocumentVectorizer, QueryVectorizer
+
 
 def show(indices: List[int], id2vocab: Dict[int, str]) -> None:
     for index in indices:
@@ -106,8 +110,24 @@ def main() -> None:
         print(results)
         print()
         print(scores)
-        print()
-        
+        print("#########")
+
+    # modules
+    document_vectorizer = DocumentVectorizer(model, tokenizer)
+    query_vectorizer = QueryVectorizer(model, tokenizer)
+    retriever = IndexRetriever()
+    
+    document_ids, vocab_ids, values = document_vectorizer.vectorize(texts)
+    index = IndexBuilder.build(document_ids, vocab_ids, values)
+    #print(index)
+
+    vocab_ids, values = query_vectorizer.vectorize(queries)
+    ids, scores = retriever.retrieve(index, vocab_ids, values)
+    print(ids)
+    print()
+    print(scores)
+    print()
+
     print("DONE")
 
 
